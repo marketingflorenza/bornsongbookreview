@@ -18,15 +18,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   } from 'firebase/firestore';
 
   // ─── Firebase ───────────────────────────────────────────────────────────────
-  const firebaseConfig = {
-    apiKey: "AIzaSyD7OaWHuBJ69uNdT8g3S4F2FL7tkmdTwAo",
-    authDomain: "florenza-clinic-db.firebaseapp.com",
-    projectId: "florenza-clinic-db",
-    storageBucket: "florenza-clinic-db.firebasestorage.app",
-    messagingSenderId: "343590026459",
-    appId: "1:343590026459:web:334f4ca1476f71cd3320fe",
-  };
-  const APP_ID = 'florenza-clinic-db';
+const firebaseConfig = {
+  apiKey: "AIzaSyDQ-e0qxax1gs6RqPVVyVNeHHAUZoDR7NE",
+  authDomain: "bornsong-clinic-db-893e7.firebaseapp.com",
+  projectId: "bornsong-clinic-db-893e7",
+  storageBucket: "bornsong-clinic-db-893e7.firebasestorage.app",
+  messagingSenderId: "840582556242",
+  appId: "1:840582556242:web:de331510c1417d47548d8b",
+};
+const APP_ID = 'bornsong-clinic-db-893e7';
+
   let app, auth, db;
   try {
     setLogLevel('silent');
@@ -54,19 +55,19 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     'Premier card': {
       label: 'Premier Card',
       Icon: BadgeCheck,
-      gradient: 'from-blue-100 to-sky-200',
-      badgeBg: 'bg-blue-100',
-      badgeText: 'text-blue-700',
-      badgeBorder: 'border-blue-300',
-      iconBg: 'bg-blue-500',
+      gradient: 'from-pink-100 to-pink-200',
+      badgeBg: 'bg-pink-100',
+      badgeText: 'text-pink-700',
+      badgeBorder: 'border-pink-300',
+      iconBg: 'bg-pink-500',
       iconColor: 'text-white',
-      headerGradient: 'from-blue-600 to-sky-500',
-      ring: 'ring-blue-300',
-      dot: 'bg-blue-500',
+      headerGradient: 'from-pink-600 to-rose-500',
+      ring: 'ring-pink-300',
+      dot: 'bg-pink-500',
       order: 1,
     },
-    'Flora card': {
-      label: 'Flora Card',
+    'Bornsong card': {
+      label: 'Bornsong Card',
       Icon: Gem,
       gradient: 'from-emerald-100 to-teal-200',
       badgeBg: 'bg-emerald-100',
@@ -82,15 +83,15 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     'Vip': {
       label: 'VIP',
       Icon: Award,
-      gradient: 'from-violet-100 to-purple-200',
-      badgeBg: 'bg-violet-100',
-      badgeText: 'text-violet-700',
-      badgeBorder: 'border-violet-300',
-      iconBg: 'bg-violet-600',
+      gradient: 'from-rose-100 to-pink-200',
+      badgeBg: 'bg-rose-100',
+      badgeText: 'text-rose-700',
+      badgeBorder: 'border-rose-300',
+      iconBg: 'bg-rose-600',
       iconColor: 'text-white',
-      headerGradient: 'from-violet-700 to-purple-500',
-      ring: 'ring-violet-300',
-      dot: 'bg-violet-500',
+      headerGradient: 'from-rose-700 to-pink-500',
+      ring: 'ring-rose-300',
+      dot: 'bg-rose-500',
       order: 3,
     },
     'VVip': {
@@ -146,12 +147,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
         <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-purple-800 to-purple-600 px-5 py-4 flex items-center justify-between text-white">
+          <div className="bg-gradient-to-r from-pink-800 to-pink-600 px-5 py-4 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
               <div className="p-2 bg-white/20 rounded-xl"><Crown className="w-5 h-5" /></div>
               <div>
                 <h3 className="font-bold text-base leading-tight">ประเภทสมาชิก</h3>
-                <p className="text-purple-200 text-[10px]">{patientName}</p>
+                <p className="text-pink-200 text-[10px]">{patientName}</p>
               </div>
             </div>
             <button onClick={onClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
@@ -176,7 +177,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                     <p className={`font-bold text-sm ${isSelected ? 'text-slate-800' : 'text-slate-600'}`}>{cfg.label}</p>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
-                    ${isSelected ? 'border-purple-600 bg-purple-600' : 'border-slate-300'}`}>
+                    ${isSelected ? 'border-pink-600 bg-pink-600' : 'border-slate-300'}`}>
                     {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
                   </div>
                 </button>
@@ -187,7 +188,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             <button onClick={onClose} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
             <button onClick={handleSave} disabled={saving}
               className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                ${saving ? 'bg-purple-300 cursor-not-allowed' : 'bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-800 active:scale-[0.98]'}`}>
+                ${saving ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-700 to-pink-500 hover:from-pink-800 active:scale-[0.98]'}`}>
               {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึก</>}
             </button>
           </div>
@@ -240,22 +241,21 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   const DAY_TH_SHORT = ['อา','จ','อ','พ','พฤ','ศ','ส'];
 
   const STATUS_CONFIG = {
-    'ยังไม่มา':     { bg: 'bg-blue-100',   text: 'text-blue-700',   dot: 'bg-blue-500',   border: 'border-blue-300' },
-    'มาแล้ว':      { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
-    'เลื่อนนัด':   { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
-    'ไม่มาตามนัด': { bg: 'bg-rose-100',   text: 'text-rose-700',   dot: 'bg-rose-500',    border: 'border-rose-300' },
-    'ยกเลิกนัด':   { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',     border: 'border-red-400' },
+    'ยังไม่มา':      { bg: 'bg-pink-100',    text: 'text-pink-700',   dot: 'bg-pink-500',   border: 'border-pink-300' },
+    'มาแล้ว':       { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
+    'เลื่อนนัด':    { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
+    'ไม่มาตามนัด': { bg: 'bg-rose-100',    text: 'text-rose-700',   dot: 'bg-rose-500',     border: 'border-rose-300' },
+    'ยกเลิกนัด':    { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',      border: 'border-red-400' },
   };
 
   const CALL_CONFIG = {
     'ยังไม่โทรคอนเฟิม':   { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', icon: PhoneMissed },
-    'คอนเฟิมนัดแล้ว':    { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
+    'คอนเฟิมนัดแล้ว':     { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
     'คอนเฟิมลูกค้าที่จะมาตามนัด': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: PhoneCall },
     'ไม่รับสายรอโทรใหม่': { bg: 'bg-amber-50',  text: 'text-amber-700',  border: 'border-amber-400',  icon: PhoneOff },
   };
 
   // ─── ✅ DUPLICATE CHECK HELPER (shared across components) ────────────────────
-  // Returns array of duplicate bookings matching HN, name, OR phone on same date
   const findDuplicateBookings = (allBookings, { hn, name, phone, date, excludeId }) => {
     if (!date) return [];
     const normStr = (s) => (s || '').trim().toLowerCase();
@@ -266,15 +266,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       if (b.bookingDate !== date) return false;
       if (b.status === 'ยกเลิกนัด' || b.status === 'เลื่อนนัด') return false;
 
-      // HN match
       if (hn && hn.trim() && b.hn && b.hn.trim()) {
         if (normStr(b.hn) === normStr(hn)) return true;
       }
-      // Name match (must be meaningful length)
       if (name && name.trim().length > 1 && b.customerName && b.customerName.trim().length > 1) {
         if (normStr(b.customerName) === normStr(name)) return true;
       }
-      // Phone match (must be 9+ digits)
       const p1 = normPhone(phone);
       const p2 = normPhone(b.phoneNumber);
       if (p1.length >= 9 && p2.length >= 9 && p1 === p2) return true;
@@ -283,7 +280,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     });
   };
 
-  // Build a human-readable warning from duplicate list
   const buildDupWarning = (dups, { hn, name, phone }) => {
     if (!dups.length) return '';
     const normStr = (s) => (s || '').trim().toLowerCase();
@@ -339,12 +335,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
           ))}
           {newPreviews.map((src, idx) => (
-            <div key={`nw-${idx}`} className="relative aspect-square rounded-lg overflow-hidden border-2 border-purple-300 group cursor-pointer"
+            <div key={`nw-${idx}`} className="relative aspect-square rounded-lg overflow-hidden border-2 border-pink-300 group cursor-pointer"
               onClick={() => onLightbox([...existingImages, ...newPreviews], existingImages.length + idx)}>
               <img src={src} alt="" className="w-full h-full object-cover" />
               <button type="button" onClick={ev => { ev.stopPropagation(); onRemoveNew(type, idx); }}
                 className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"><X className="w-2.5 h-2.5" /></button>
-              <div className="absolute bottom-0 left-0 right-0 bg-purple-500/70 text-[9px] text-white text-center py-0.5">ใหม่</div>
+              <div className="absolute bottom-0 left-0 right-0 bg-pink-500/70 text-[9px] text-white text-center py-0.5">ใหม่</div>
             </div>
           ))}
           {total < 5 && (
@@ -358,11 +354,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     );
   };
 
-  const StaffFields = ({ formData, handleInputChange, theme = 'purple' }) => {
-    const ring = theme === 'blue' ? 'focus:border-blue-500 focus:ring focus:ring-blue-200 border-slate-200' : 'focus:border-purple-500 focus:ring focus:ring-purple-200 border-purple-200';
-    const icon = theme === 'blue' ? 'text-blue-400' : 'text-purple-400';
-    const label = theme === 'blue' ? 'text-slate-700' : 'text-purple-900';
-    const head = theme === 'blue' ? 'text-blue-400' : 'text-purple-400';
+  const StaffFields = ({ formData, handleInputChange, theme = 'pink' }) => {
+    const ring = theme === 'pink' ? 'focus:border-pink-500 focus:ring focus:ring-pink-200 border-pink-200' : 'focus:border-pink-500 focus:ring focus:ring-pink-200 border-pink-200';
+    const icon = 'text-pink-400';
+    const label = 'text-pink-900';
+    const head = 'text-pink-400';
     return (
       <div className="space-y-3">
         <h3 className={`text-xs font-bold ${head} uppercase tracking-wider border-b pb-1`}>ทีมผู้ดูแล</h3>
@@ -429,12 +425,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
         <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-emerald-600 to-teal-500 px-5 py-4 flex items-center justify-between text-white">
+          <div className="bg-gradient-to-r from-pink-600 to-rose-500 px-5 py-4 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
               <div className="p-2 bg-white/20 rounded-xl"><UserPlus className="w-5 h-5" /></div>
               <div>
                 <h3 className="font-bold text-base leading-tight">ลงทะเบียนลูกค้าใหม่</h3>
-                <p className="text-emerald-100 text-[10px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
+                <p className="text-pink-100 text-[10px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
               </div>
             </div>
             <button onClick={onClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
@@ -443,41 +439,41 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             <div>
               <label className="block text-xs font-bold text-slate-600 mb-1.5">ชื่อ-นามสกุล <span className="text-red-500">*</span></label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-4 w-4 text-emerald-400" /></div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-4 w-4 text-pink-400" /></div>
                 <input autoFocus type="text" value={regForm.fullName}
                   onChange={e => { setRegForm(f => ({ ...f, fullName: e.target.value })); setErr(''); }}
                   placeholder="เช่น สมหญิง สวยงาม"
-                  className="pl-10 w-full rounded-xl border border-emerald-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-600 mb-1.5">ชื่อเล่น</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Star className="h-4 w-4 text-emerald-300" /></div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Star className="h-4 w-4 text-pink-300" /></div>
                 <input type="text" value={regForm.nickname}
                   onChange={e => setRegForm(f => ({ ...f, nickname: e.target.value }))}
                   placeholder="เช่น นุ่น, มิ้น, แป้ง"
-                  className="pl-10 w-full rounded-xl border border-emerald-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-600 mb-1.5">เลข HN <span className="text-red-500">*</span></label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Hash className="h-4 w-4 text-emerald-400" /></div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Hash className="h-4 w-4 text-pink-400" /></div>
                 <input type="text" value={regForm.hn}
                   onChange={e => { setRegForm(f => ({ ...f, hn: e.target.value })); setErr(''); }}
                   placeholder="เช่น HN12345"
-                  className="pl-10 w-full rounded-xl border border-emerald-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-600 mb-1.5">เบอร์โทรศัพท์</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-4 w-4 text-emerald-400" /></div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-4 w-4 text-pink-400" /></div>
                 <input type="tel" value={regForm.phone}
                   onChange={e => setRegForm(f => ({ ...f, phone: e.target.value }))}
                   placeholder="08X-XXX-XXXX"
-                  className="pl-10 w-full rounded-xl border border-emerald-200 focus:border-emerald-500 focus:ring focus:ring-emerald-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
@@ -493,7 +489,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-slate-200'}`}>
                       <IconC className={`w-4 h-4 shrink-0 ${isSelected ? cfg.badgeText : 'text-slate-300'}`} />
                       {cfg.label}
-                      {isSelected && <span className="ml-auto text-[10px] font-bold text-emerald-600">✓ เลือกแล้ว</span>}
+                      {isSelected && <span className="ml-auto text-[10px] font-bold text-pink-600">✓ เลือกแล้ว</span>}
                     </button>
                   );
                 })}
@@ -505,7 +501,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             <button onClick={onClose} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
             <button onClick={handleSubmit} disabled={saving || !regForm.fullName.trim() || !regForm.hn.trim()}
               className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                ${saving || !regForm.fullName.trim() || !regForm.hn.trim() ? 'bg-emerald-300 cursor-not-allowed' : 'bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 active:scale-[0.98]'}`}>
+                ${saving || !regForm.fullName.trim() || !regForm.hn.trim() ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 active:scale-[0.98]'}`}>
               {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><UserPlus className="w-4 h-4" /> ลงทะเบียน</>}
             </button>
           </div>
@@ -539,7 +535,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   // ─── Booking Form Modal ───────────────────────────────────────────────────────
   const BookingFormModal = ({ booking, patients, onClose, onSave, isOffline, allBookings }) => {
     const [form, setForm] = useState(booking);
-    // ✅ renamed from hnWarn → dupWarn
     const [dupWarn, setDupWarn] = useState('');
     const [saving, setSaving] = useState(false);
     const [custMode, setCustMode] = useState(booking.hn ? 'existing' : 'new');
@@ -560,7 +555,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         ).slice(0, 8)
       : patients.slice(0, 8);
 
-    // ✅ NEW: checkDuplicate — checks HN, name, AND phone
     const checkDuplicate = useCallback((hn, name, phone, date, excludeId) => {
       const dups = findDuplicateBookings(allBookings, { hn, name, phone, date, excludeId });
       setDupWarn(buildDupWarning(dups, { hn, name, phone }));
@@ -591,7 +585,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       const { name, value } = e.target;
       const updated = { ...form, [name]: value };
       setForm(updated);
-      // Re-check on date, name, or phone change
       if (name === 'bookingDate' || name === 'customerName' || name === 'phoneNumber') {
         checkDuplicate(
           updated.hn,
@@ -605,7 +598,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      // ✅ Block if any duplicate found (warn starts with ⚠)
       if (dupWarn.startsWith('⚠')) return;
       setSaving(true);
       await onSave(form);
@@ -631,7 +623,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         {showRegister && <RegisterPatientModal onClose={() => setShowRegister(false)} onRegistered={handleRegistered} />}
         <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92vh]">
-            <div className="bg-gradient-to-r from-blue-700 to-blue-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
+            <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-xl"><CalendarPlus className="w-5 h-5" /></div>
                 <h2 className="text-lg font-bold">{booking.id ? 'แก้ไขนัดหมาย' : 'เพิ่มนัดหมายใหม่'}</h2>
@@ -639,12 +631,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               <button onClick={onClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
             </div>
             <form onSubmit={handleSubmit} className="overflow-y-auto flex-grow p-5 space-y-4">
-              <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100 space-y-3">
-                <p className="text-xs font-bold text-blue-500 uppercase tracking-wider">ข้อมูลลูกค้า</p>
-                <div className="flex gap-1.5 bg-white/70 p-1 rounded-xl border border-blue-100">
+              <div className="bg-pink-50 rounded-2xl p-4 border border-pink-100 space-y-3">
+                <p className="text-xs font-bold text-pink-500 uppercase tracking-wider">ข้อมูลลูกค้า</p>
+                <div className="flex gap-1.5 bg-white/70 p-1 rounded-xl border border-pink-100">
                   <button type="button" onClick={() => switchMode('existing')}
                     className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5
-                      ${custMode === 'existing' ? 'bg-blue-600 text-white shadow-sm' : 'text-blue-500 hover:text-blue-700'}`}>
+                      ${custMode === 'existing' ? 'bg-pink-600 text-white shadow-sm' : 'text-pink-500 hover:text-pink-700'}`}>
                     <Star className="w-3 h-3" /> ลูกค้าเดิม (มี HN)
                   </button>
                   <button type="button" onClick={() => switchMode('new')}
@@ -657,9 +649,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 {custMode === 'existing' && (
                   <div className="space-y-2">
                     {selectedPatient ? (
-                      <div className="flex items-center gap-3 bg-white border-2 border-blue-400 rounded-xl px-3 py-2.5">
-                        <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                          <User className="w-4 h-4 text-blue-600" />
+                      <div className="flex items-center gap-3 bg-white border-2 border-pink-400 rounded-xl px-3 py-2.5">
+                        <div className="w-9 h-9 bg-pink-100 rounded-full flex items-center justify-center shrink-0">
+                          <User className="w-4 h-4 text-pink-600" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
@@ -668,7 +660,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                             {selectedPatient.isReviewer && <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-600 border border-pink-200"><Star className="w-2 h-2" />รีวิว</span>}
                           </div>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="flex items-center text-[11px] text-blue-600 font-bold"><Hash className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.hn}</span>
+                            <span className="flex items-center text-[11px] text-pink-600 font-bold"><Hash className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.hn}</span>
                             {selectedPatient.phone && <span className="flex items-center text-[11px] text-slate-400"><Phone className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.phone}</span>}
                           </div>
                         </div>
@@ -679,12 +671,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                     ) : (
                       <div ref={searchRef} className="relative">
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Search className="h-4 w-4 text-blue-400" /></div>
+                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Search className="h-4 w-4 text-pink-400" /></div>
                           <input type="text" value={hnSearch}
                             onChange={e => { setHnSearch(e.target.value); setShowDropdown(true); }}
                             onFocus={() => setShowDropdown(true)}
                             placeholder="ค้นหาชื่อ, HN หรือเบอร์โทร..."
-                            className="pl-10 w-full rounded-xl border border-blue-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2.5 text-sm bg-white" />
+                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm bg-white" />
                           {hnSearch && (
                             <button type="button" onClick={() => { setHnSearch(''); setShowDropdown(false); }}
                               className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -698,9 +690,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                               <div className="px-4 py-3 text-xs text-slate-400 text-center">ไม่พบลูกค้า</div>
                             ) : filteredPatients.map(p => (
                               <div key={p.hn} onClick={() => selectPatient(p)}
-                                className="flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0">
-                                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
-                                  <User className="w-3.5 h-3.5 text-purple-500" />
+                                className="flex items-center gap-3 px-4 py-2.5 hover:bg-pink-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0">
+                                <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center shrink-0">
+                                  <User className="w-3.5 h-3.5 text-pink-500" />
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-1.5 flex-wrap">
@@ -709,7 +701,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                                     {p.isReviewer && <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-600 border border-pink-200"><Star className="w-2 h-2" />รีวิว</span>}
                                   </div>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-[11px] text-blue-500 font-bold flex items-center"><Hash className="w-2.5 h-2.5 mr-0.5" />{p.hn}</span>
+                                    <span className="text-[11px] text-pink-500 font-bold flex items-center"><Hash className="w-2.5 h-2.5 mr-0.5" />{p.hn}</span>
                                     {p.phone && <span className="text-[11px] text-slate-400 flex items-center"><Phone className="w-2.5 h-2.5 mr-0.5" />{p.phone}</span>}
                                   </div>
                                 </div>
@@ -726,20 +718,20 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         <div>
                           <label className="block text-xs font-bold text-slate-500 mb-1">เบอร์โทรศัพท์ <span className="text-red-500">*</span></label>
                           <input name="phoneNumber" value={form.phoneNumber} onChange={handleChange} required placeholder="08x-xxx-xxxx"
-                            className="w-full rounded-xl border border-blue-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white" />
+                            className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-500 mb-1">ชื่อ (แก้ไขได้)</label>
                           <input name="customerName" value={form.customerName} onChange={handleChange}
-                            className="w-full rounded-xl border border-blue-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white" />
+                            className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                         </div>
                       </div>
                     )}
 
-                    <div className="border-t border-blue-100 pt-2">
+                    <div className="border-t border-pink-100 pt-2">
                       <p className="text-[10px] text-slate-400 font-medium mb-1.5">มาครั้งแรก ยังไม่มีข้อมูลในระบบ?</p>
                       <button type="button" onClick={() => setShowRegister(true)}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-500 hover:text-white border-2 border-emerald-300 hover:border-emerald-500 rounded-xl transition-all">
+                        className="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-pink-700 bg-pink-50 hover:bg-pink-500 hover:text-white border-2 border-pink-300 hover:border-pink-500 rounded-xl transition-all">
                         <UserPlus className="w-4 h-4" /> ลงทะเบียนลูกค้าใหม่
                       </button>
                     </div>
@@ -765,7 +757,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   </div>
                 )}
 
-                {/* ✅ NEW: Duplicate warning display */}
                 {dupWarn && <DupWarnBox warn={dupWarn} />}
               </div>
 
@@ -775,12 +766,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">วันที่ <span className="text-red-500">*</span></label>
                     <input type="date" name="bookingDate" value={form.bookingDate} onChange={handleChange} required
-                      className="w-full rounded-xl border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white" />
+                      className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">เวลา <span className="text-red-500">*</span></label>
                     <select name="bookingTime" value={form.bookingTime} onChange={handleChange} required
-                      className="w-full rounded-xl border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white">
+                      className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white">
                       <option value="">เลือกเวลา</option>
                       {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
                     </select>
@@ -789,23 +780,22 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">หัตถการ <span className="text-red-500">*</span></label>
                   <input name="procedure" value={form.procedure} onChange={handleChange} required placeholder="ระบุบริการที่ต้องการรับ"
-                    className="w-full rounded-xl border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white" />
+                    className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">ชื่อผู้นัด</label>
                   <input name="bookerName" value={form.bookerName} onChange={handleChange} placeholder="ชื่อผู้ดำเนินการจอง"
-                    className="w-full rounded-xl border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm bg-white" />
+                    className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                 </div>
               </div>
             </form>
             <div className="border-t border-slate-100 p-4 bg-gray-50 flex justify-end gap-3 shrink-0 rounded-b-3xl">
               <button type="button" onClick={onClose} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
-              {/* ✅ Button disabled when duplicate found */}
               <button onClick={handleSubmit} disabled={saving || dupWarn.startsWith('⚠')}
                 className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center gap-2 ${
-                  saving ? 'bg-blue-300 cursor-not-allowed' :
+                  saving ? 'bg-pink-300 cursor-not-allowed' :
                   dupWarn.startsWith('⚠') ? 'bg-amber-300 cursor-not-allowed' :
-                  'bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:shadow-lg active:scale-[0.98]'
+                  'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'
                 }`}>
                 {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> :
                 dupWarn.startsWith('⚠') ? <><AlertTriangle className="w-4 h-4" /> พบนัดซ้ำ</> :
@@ -833,7 +823,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const [nextProc, setNextProc] = useState(booking.procedure);
     const [updating, setUpdating] = useState(false);
     const [localCallStatus, setLocalCallStatus] = useState(booking.callStatus || 'ยังไม่โทรคอนเฟิม');
-    // ── Delete with password ──
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deletePassword, setDeletePassword] = useState('');
     const [deleteError, setDeleteError] = useState('');
@@ -874,8 +863,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
     const doReschedule = async () => {
       if (!reschedDate || !reschedTime) return;
-
-      // ✅ Check duplicate on new date (same HN / name / phone)
       const dups = findDuplicateBookings(allBookings, {
         hn: booking.hn,
         name: booking.customerName,
@@ -904,10 +891,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       onClose();
     };
 
-    // ✅ UPDATED doNextBooking: checks HN, name, AND phone
     const doNextBooking = async () => {
       if (!nextDate || !nextTime || !nextProc) return;
-
       const dups = findDuplicateBookings(allBookings, {
         hn: booking.hn,
         name: booking.customerName,
@@ -915,7 +900,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         date: nextDate,
         excludeId: booking.id,
       });
-
       if (dups.length) {
         const warn = buildDupWarning(dups, {
           hn: booking.hn,
@@ -925,7 +909,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         alert(`❌ ไม่สามารถจองได้\n\n${warn}`);
         return;
       }
-
       setUpdating(true);
       await addDoc(BOOKINGS_PATH(), {
         bookingDate: nextDate, bookingTime: nextTime,
@@ -950,7 +933,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   <UserPlus className="w-3 h-3" /> ลูกค้าใหม่
                 </span>
               ) : (
-                <span className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-purple-100 text-purple-700 border border-purple-300">
+                <span className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-pink-100 text-pink-700 border border-pink-300">
                   <Star className="w-3 h-3" /> ลูกค้าเก่า
                 </span>
               )}
@@ -961,7 +944,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           <div className="overflow-y-auto flex-grow px-6 pb-4 space-y-4">
             <div>
               <h4 className="text-2xl font-bold text-slate-900 mb-0.5">{booking.customerName || 'ไม่มีชื่อ'}</h4>
-              <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+              <div className="flex items-center gap-2 text-pink-600 font-bold text-sm">
                 <Hash className="w-3.5 h-3.5" /><span>HN: {booking.hn || 'ลูกค้าใหม่'}</span>
               </div>
             </div>
@@ -979,8 +962,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         setLocalCallStatus(opt);
                         onUpdateCallStatus(booking.id, opt);
                       }}
-                      className={`flex items-center gap-2.5 cursor-pointer p-2 rounded-xl border transition-all hover:border-blue-300 ${isSelected ? `${cc.border} ${cc.bg}` : 'border-slate-200 bg-white'}`}>
-                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-blue-500 bg-blue-500' : 'border-slate-300 bg-white'}`}>
+                      className={`flex items-center gap-2.5 cursor-pointer p-2 rounded-xl border transition-all hover:border-pink-300 ${isSelected ? `${cc.border} ${cc.bg}` : 'border-slate-200 bg-white'}`}>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-pink-500 bg-pink-500' : 'border-slate-300 bg-white'}`}>
                         {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                       </div>
                       <IconC className={`w-3.5 h-3.5 ${isSelected ? cc.text : 'text-slate-400'}`} />
@@ -1010,7 +993,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             <div className="flex flex-wrap gap-2">
               {[
                 { label: 'มาแล้ว', bg: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-700', status: 'มาแล้ว' },
-                { label: 'ยังไม่มา', bg: 'bg-blue-100 hover:bg-blue-200 text-blue-700', status: 'ยังไม่มา' },
+                { label: 'ยังไม่มา', bg: 'bg-pink-100 hover:bg-pink-200 text-pink-700', status: 'ยังไม่มา' },
                 { label: 'ไม่มา', bg: 'bg-rose-100 hover:bg-rose-200 text-rose-600', status: 'ไม่มาตามนัด' },
               ].map(({ label, bg, status }) => (
                 <button key={label} onClick={() => doStatus(status)} disabled={updating}
@@ -1076,7 +1059,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 <CalendarPlus className="w-3.5 h-3.5" /> จองครั้งถัดไป
               </button>
               <button onClick={() => { onEdit(booking); onClose(); }}
-                className="flex-1 flex items-center justify-center gap-2 py-2 text-sm text-slate-500 hover:text-blue-500 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-xl transition-all font-medium">
+                className="flex-1 flex items-center justify-center gap-2 py-2 text-sm text-slate-500 hover:text-pink-500 bg-white hover:bg-pink-50 border border-slate-200 hover:border-pink-200 rounded-xl transition-all font-medium">
                 <FileEdit className="w-3.5 h-3.5" /> แก้ไขข้อมูล
               </button>
               <button onClick={() => { setShowDeleteModal(true); setDeletePassword(''); setDeleteError(''); }}
@@ -1086,7 +1069,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               </button>
             </div>
 
-            {/* ── Delete Password Modal ── */}
             {showDeleteModal && (
               <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[80] flex items-center justify-center p-4">
                 <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
@@ -1101,7 +1083,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                     <button onClick={() => setShowDeleteModal(false)} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                   </div>
                   <div className="p-5 space-y-4">
-                    {/* Warning box */}
                     <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl p-3.5">
                       <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                       <div>
@@ -1113,7 +1094,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         </p>
                       </div>
                     </div>
-                    {/* Password input */}
                     <div>
                       <label className="block text-xs font-bold text-slate-600 mb-1.5 flex items-center gap-1.5">
                         <Shield className="w-3.5 h-3.5 text-red-400" /> รหัสผ่านผู้ดูแลระบบ
@@ -1190,7 +1170,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             const tier = b.hn && records ? getPatientTier(records, b.hn) : DEFAULT_TIER;
             return (
               <div key={b.id} onClick={() => { onClose(); onSelectBooking(b); }}
-                className="bg-white p-3 rounded-2xl border-2 border-slate-100 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer">
+                className="bg-white p-3 rounded-2xl border-2 border-slate-100 hover:border-pink-300 hover:shadow-md transition-all cursor-pointer">
                 <div className="flex justify-between items-start gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
@@ -1202,12 +1182,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       )}
                       {b.hn && <MemberBadge tier={tier} size="xs" />}
                     </div>
-                    {b.hn && <p className="text-[11px] text-blue-500 font-bold">HN: {b.hn}</p>}
+                    {b.hn && <p className="text-[11px] text-pink-500 font-bold">HN: {b.hn}</p>}
                     <p className="text-xs text-slate-400 truncate mt-0.5">{b.procedure || '-'}</p>
                     <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${sc.bg} ${sc.text}`}>{b.status}</span>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-blue-600 font-bold text-sm">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                    <p className="text-pink-600 font-bold text-sm">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-300 mt-1 ml-auto" />
                   </div>
                 </div>
@@ -1236,7 +1216,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const nextMonth = () => { if (calMonth === 11) { setCalMonth(0); setCalYear(y => y+1); } else setCalMonth(m => m+1); };
     const goToday = () => { setCalYear(today.getFullYear()); setCalMonth(today.getMonth()); };
 
-    // ✅ Search logic — searches across ALL bookings (not just current month)
     const normQ = calSearch.trim().toLowerCase().replace(/[-\s]/g, '');
     const searchResults = normQ.length > 0
       ? [...bookings].filter(b =>
@@ -1247,7 +1226,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         ).sort((a, b) => a.bookingDate.localeCompare(b.bookingDate) || (a.bookingTime||'').localeCompare(b.bookingTime||''))
       : null;
 
-    // Set of dates that have search matches (for highlight in calendar)
     const matchDates = searchResults ? new Set(searchResults.map(b => b.bookingDate)) : null;
 
     const bookingsByDate = {};
@@ -1262,8 +1240,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
     return (
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        {/* Header with nav + search */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 space-y-2.5">
+        <div className="bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-3 space-y-2.5">
           <div className="flex items-center justify-between text-white">
             <div className="flex items-center gap-2">
               <button onClick={prevMonth} className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"><ChevronLeft className="w-4 h-4" /></button>
@@ -1272,7 +1249,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
             <button onClick={goToday} className="text-xs font-bold bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition-colors">วันนี้</button>
           </div>
-          {/* Search box */}
           <div className="relative" ref={calSearchRef}>
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search className="h-3.5 w-3.5 text-white/60" />
@@ -1292,15 +1268,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </div>
         </div>
 
-        {/* Search results list */}
         {searchResults && (
           <div className="max-h-[420px] overflow-y-auto">
-            <div className="px-4 py-2.5 bg-blue-50 border-b border-blue-100 flex items-center justify-between sticky top-0 z-10">
+            <div className="px-4 py-2.5 bg-pink-50 border-b border-pink-100 flex items-center justify-between sticky top-0 z-10">
               <div className="flex items-center gap-2">
-                <Search className="w-3.5 h-3.5 text-blue-500" />
-                <span className="text-xs font-bold text-blue-700">ผลการค้นหา "{calSearch}"</span>
+                <Search className="w-3.5 h-3.5 text-pink-500" />
+                <span className="text-xs font-bold text-pink-700">ผลการค้นหา "{calSearch}"</span>
               </div>
-              <span className="text-[10px] font-bold bg-blue-600 text-white px-2.5 py-1 rounded-full">{searchResults.length} รายการ</span>
+              <span className="text-[10px] font-bold bg-pink-600 text-white px-2.5 py-1 rounded-full">{searchResults.length} รายการ</span>
             </div>
             {searchResults.length === 0 ? (
               <div className="py-10 text-center">
@@ -1320,17 +1295,17 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   return (
                     <div key={b.id || idx}
                       onClick={() => { setCalSearch(''); onSelectDate(b.bookingDate); }}
-                      className="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-blue-50 transition-colors group">
+                      className="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-pink-50 transition-colors group">
                       <div className={`w-2 h-2 rounded-full shrink-0 ${sc.dot}`} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <p className="font-bold text-sm text-slate-800 truncate group-hover:text-blue-700 transition-colors">{b.customerName || 'ไม่มีชื่อ'}</p>
+                          <p className="font-bold text-sm text-slate-800 truncate group-hover:text-pink-700 transition-colors">{b.customerName || 'ไม่มีชื่อ'}</p>
                           {newCust && (
                             <span className="shrink-0 flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-700 border border-amber-300">
                               <UserPlus className="w-2.5 h-2.5" /> ใหม่
                             </span>
                           )}
-                          {b.hn && <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded-md">HN {b.hn}</span>}
+                          {b.hn && <span className="text-[10px] font-bold text-pink-500 bg-pink-50 px-1.5 py-0.5 rounded-md">HN {b.hn}</span>}
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                           {b.phoneNumber && <span className="text-[11px] text-slate-400 flex items-center gap-0.5"><Phone className="w-2.5 h-2.5" />{b.phoneNumber}</span>}
@@ -1338,11 +1313,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         </div>
                       </div>
                       <div className="shrink-0 text-right">
-                        <p className="text-[11px] font-bold text-blue-600">{dateLabel}</p>
-                        <p className="text-[11px] text-blue-500">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                        <p className="text-[11px] font-bold text-pink-600">{dateLabel}</p>
+                        <p className="text-[11px] text-pink-500">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                         <span className={`inline-block mt-0.5 text-[9px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
                       </div>
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-400 shrink-0" />
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 shrink-0" />
                     </div>
                   );
                 })}
@@ -1351,12 +1326,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </div>
         )}
 
-        {/* Calendar grid — hidden while searching */}
         {!searchResults && (
           <>
             <div className="grid grid-cols-7 bg-slate-50 border-b border-slate-100">
               {DAY_TH_SHORT.map((d, i) => (
-                <div key={i} className={`text-center py-2 text-xs font-bold ${i === 0 ? 'text-red-500' : i === 6 ? 'text-blue-500' : 'text-slate-500'}`}>{d}</div>
+                <div key={i} className={`text-center py-2 text-xs font-bold ${i === 0 ? 'text-red-500' : i === 6 ? 'text-pink-500' : 'text-slate-500'}`}>{d}</div>
               ))}
             </div>
             <div className="grid grid-cols-7 divide-x divide-y divide-slate-100">
@@ -1371,9 +1345,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 const activeBookings = dayBookings.filter(b => b.status !== 'ยกเลิกนัด' && b.status !== 'เลื่อนนัด');
                 return (
                   <div key={day} onClick={() => onSelectDate(dateKey)}
-                    className={`min-h-[70px] sm:min-h-[90px] p-1 cursor-pointer transition-all hover:bg-blue-50 group relative ${isToday ? 'bg-blue-50/70' : ''}`}>
+                    className={`min-h-[70px] sm:min-h-[90px] p-1 cursor-pointer transition-all hover:bg-pink-50 group relative ${isToday ? 'bg-pink-50/70' : ''}`}>
                     <div className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold mb-1
-                      ${isToday ? 'bg-blue-600 text-white' : isWeekend ? (colIdx===0?'text-red-500':'text-blue-500') : 'text-slate-700'}`}>{day}</div>
+                      ${isToday ? 'bg-pink-500 text-white' : isWeekend ? (colIdx===0?'text-red-500':'text-pink-500') : 'text-slate-700'}`}>{day}</div>
                     <div className="space-y-0.5">
                       {dayBookings.slice(0, 3).map((b, bi) => {
                         const sc = STATUS_CONFIG[b.status] || STATUS_CONFIG['ยังไม่มา'];
@@ -1390,12 +1364,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       {dayBookings.length > 3 && <div className="text-[9px] text-slate-400 font-bold pl-0.5">+{dayBookings.length - 3} อื่นๆ</div>}
                     </div>
                     {activeBookings.length > 0 && (
-                      <div className="absolute top-1 right-1 w-4 h-4 bg-blue-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                      <div className="absolute top-1 right-1 w-4 h-4 bg-pink-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
                         {activeBookings.length}
                       </div>
                     )}
                     <button onClick={e => { e.stopPropagation(); onAddBooking(dateKey); }}
-                      className="absolute bottom-1 right-1 w-5 h-5 bg-blue-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-sm hover:bg-blue-600">
+                      className="absolute bottom-1 right-1 w-5 h-5 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-600">
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
@@ -1416,9 +1390,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const [editBooking, setEditBooking] = useState(null);
     const [addBooking, setAddBooking] = useState(null);
     const [viewMode, setViewMode] = useState('calendar');
-    // ✅ Search bookings by HN / name / phone (cross-date)
     const [bookingSearch, setBookingSearch] = useState('');
-    // ✅ Search within the daily table
     const [daySearch, setDaySearch] = useState('');
 
     useEffect(() => {
@@ -1432,7 +1404,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const dayBookings = [...bookings.filter(b => b.bookingDate === reportDate)]
       .sort((a, b) => (a.bookingTime || '').localeCompare(b.bookingTime || ''));
 
-    // ✅ Search filter across ALL bookings (not just today)
     const normQ = bookingSearch.trim().toLowerCase().replace(/[-\s]/g, '');
     const searchedBookings = bookingSearch.trim().length > 0
       ? bookings.filter(b => {
@@ -1445,7 +1416,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         }).sort((a, b) => b.bookingDate.localeCompare(a.bookingDate) || (a.bookingTime||'').localeCompare(b.bookingTime||''))
       : null;
 
-    // Displayed bookings for daily stats (always day-filtered)
     const displayBookings = searchedBookings || dayBookings;
 
     const byStatus = (s) => s === 'ทั้งหมด' ? dayBookings : dayBookings.filter(b => b.status === s);
@@ -1480,16 +1450,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           <div className="flex items-center gap-2">
             <div className="flex items-center bg-slate-100 rounded-xl p-1 gap-1">
               <button onClick={() => setViewMode('calendar')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'calendar' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'calendar' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 <Grid className="w-3.5 h-3.5" /> ปฏิทิน
               </button>
               <button onClick={() => setViewMode('list')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'list' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'list' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 <List className="w-3.5 h-3.5" /> รายการ
               </button>
             </div>
             <button onClick={() => setAddBooking(EMPTY_BOOKING(reportDate))}
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm text-sm active:scale-95">
+              className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm text-sm active:scale-95">
               <Plus className="w-4 h-4" /> เพิ่มคิว
             </button>
           </div>
@@ -1503,17 +1473,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
         {viewMode === 'list' && (
           <>
-            {/* ✅ Booking Search Bar */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-blue-400" />
+                <Search className="h-4 w-4 text-pink-400" />
               </div>
               <input
                 type="text"
                 value={bookingSearch}
                 onChange={e => setBookingSearch(e.target.value)}
                 placeholder="ค้นหาการจองด้วย HN, ชื่อ หรือเบอร์โทร..."
-                className="pl-11 pr-10 w-full rounded-2xl border border-blue-100 bg-white focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all px-4 py-3 text-sm text-slate-700 shadow-sm"
+                className="pl-11 pr-10 w-full rounded-2xl border border-pink-100 bg-white focus:bg-white focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all px-4 py-3 text-sm text-slate-700 shadow-sm"
               />
               {bookingSearch && (
                 <button onClick={() => setBookingSearch('')} className="absolute inset-y-0 right-0 pr-4 flex items-center">
@@ -1522,15 +1491,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               )}
             </div>
 
-            {/* Search results view */}
             {searchedBookings && (
-              <div className="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
-                <div className="px-5 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-100 flex items-center justify-between">
+              <div className="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                <div className="px-5 py-3 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Search className="w-4 h-4 text-blue-500" />
+                    <Search className="w-4 h-4 text-pink-500" />
                     <h2 className="font-bold text-gray-800 text-sm">ผลการค้นหา: "{bookingSearch}"</h2>
                   </div>
-                  <span className="text-xs font-bold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">{searchedBookings.length} รายการ</span>
+                  <span className="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full">{searchedBookings.length} รายการ</span>
                 </div>
                 {searchedBookings.length === 0 ? (
                   <div className="p-8 text-center">
@@ -1560,14 +1528,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                               ) : b.hn && <MemberBadge tier={tier} size="xs" />}
                             </div>
                             <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                              {b.hn && <span className="text-[11px] text-blue-500 font-bold flex items-center"><Hash className="w-2.5 h-2.5 mr-0.5" />{b.hn}</span>}
+                              {b.hn && <span className="text-[11px] text-pink-500 font-bold flex items-center"><Hash className="w-2.5 h-2.5 mr-0.5" />{b.hn}</span>}
                               {b.phoneNumber && <span className="text-[11px] text-slate-400 flex items-center"><Phone className="w-2.5 h-2.5 mr-0.5" />{b.phoneNumber}</span>}
                               <span className="text-[11px] text-slate-400 truncate">· {b.procedure || '-'}</span>
                             </div>
                           </div>
                           <div className="shrink-0 text-right">
                             <p className="text-[11px] text-slate-500 font-bold">{fmtDateTH(b.bookingDate)}</p>
-                            <p className="text-blue-600 font-bold text-xs">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                            <p className="text-pink-600 font-bold text-xs">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                             <span className={`inline-block mt-0.5 text-[9px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
                           </div>
                           <CallIcon className={`w-3.5 h-3.5 shrink-0 ${cc.text}`} />
@@ -1579,18 +1547,17 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               </div>
             )}
 
-            {/* Only show daily section when NOT searching */}
             {!searchedBookings && <>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-3 py-2 shadow-sm hover:border-blue-300 transition-colors">
-                <div className="p-1.5 bg-blue-50 text-blue-600 rounded-lg shrink-0"><Calendar className="w-4 h-4" /></div>
+              <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-3 py-2 shadow-sm hover:border-pink-300 transition-colors">
+                <div className="p-1.5 bg-pink-50 text-pink-600 rounded-lg shrink-0"><Calendar className="w-4 h-4" /></div>
                 <div className="flex flex-col">
                   <label className="text-[9px] uppercase font-bold text-gray-400 tracking-wider">วันที่ดูรายงาน</label>
                   <input type="date" value={reportDate} onChange={e => { setReportDate(e.target.value); setDaySearch(''); }}
                     className="text-sm font-bold text-slate-800 outline-none bg-transparent cursor-pointer" />
                 </div>
               </div>
-              <button onClick={() => setViewMode('calendar')} className="flex items-center gap-1.5 text-xs text-blue-500 hover:text-blue-700 font-bold bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-xl transition-colors">
+              <button onClick={() => setViewMode('calendar')} className="flex items-center gap-1.5 text-xs text-pink-500 hover:text-pink-700 font-bold bg-pink-50 hover:bg-pink-100 px-3 py-2 rounded-xl transition-colors">
                 <Grid className="w-3.5 h-3.5" /> ดูปฏิทิน
               </button>
             </div>
@@ -1612,14 +1579,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   </div>
                 </div>
                 <div onClick={() => setListModal({ title: '⭐ ลูกค้าเก่า', items: returningCustomerBookings })}
-                  className="cursor-pointer hover:-translate-y-1 bg-gradient-to-br from-purple-50 to-violet-100 p-4 sm:p-5 rounded-2xl shadow-sm border border-purple-200 flex items-center gap-4 hover:shadow-lg transition-all group">
-                  <div className="p-3 bg-purple-500 text-white rounded-2xl shadow-sm shrink-0 group-hover:scale-110 transition-transform">
+                  className="cursor-pointer hover:-translate-y-1 bg-gradient-to-br from-pink-50 to-rose-100 p-4 sm:p-5 rounded-2xl shadow-sm border border-pink-200 flex items-center gap-4 hover:shadow-lg transition-all group">
+                  <div className="p-3 bg-pink-500 text-white rounded-2xl shadow-sm shrink-0 group-hover:scale-110 transition-transform">
                     <Star className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] sm:text-xs uppercase font-bold text-purple-600 tracking-wider leading-tight">ลูกค้าเก่า</p>
-                    <h3 className="text-3xl sm:text-4xl font-bold text-purple-800 leading-none mt-0.5">{returningCustomerBookings.length}</h3>
-                    <p className="text-[10px] text-purple-500 font-medium mt-0.5">{dayBookings.length > 0 ? Math.round((returningCustomerBookings.length / dayBookings.length) * 100) : 0}% ของวัน</p>
+                    <p className="text-[10px] sm:text-xs uppercase font-bold text-pink-600 tracking-wider leading-tight">ลูกค้าเก่า</p>
+                    <h3 className="text-3xl sm:text-4xl font-bold text-pink-800 leading-none mt-0.5">{returningCustomerBookings.length}</h3>
+                    <p className="text-[10px] text-pink-500 font-medium mt-0.5">{dayBookings.length > 0 ? Math.round((returningCustomerBookings.length / dayBookings.length) * 100) : 0}% ของวัน</p>
                   </div>
                 </div>
               </div>
@@ -1654,7 +1621,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 <CalendarCheck className="w-3.5 h-3.5" /> สถานะนัดหมาย
               </p>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-                <StatCard label="ทั้งหมด (รายวัน)" value={dayBookings.length} Icon={Users} bg="bg-blue-50" text="text-blue-600" onClick={() => setListModal({ title: 'ทั้งหมด', items: byStatus('ทั้งหมด') })} />
+                <StatCard label="ทั้งหมด (รายวัน)" value={dayBookings.length} Icon={Users} bg="bg-pink-50" text="text-pink-600" onClick={() => setListModal({ title: 'ทั้งหมด', items: byStatus('ทั้งหมด') })} />
                 <StatCard label="มาแล้ว" value={byStatus('มาแล้ว').length} Icon={CheckCircle} bg="bg-emerald-50" text="text-emerald-600" onClick={() => setListModal({ title: 'มาแล้ว', items: byStatus('มาแล้ว') })} />
                 <StatCard label="ยังไม่มา" value={byStatus('ยังไม่มา').length} Icon={Clock} bg="bg-amber-50" text="text-amber-600" onClick={() => setListModal({ title: 'ยังไม่มา', items: byStatus('ยังไม่มา') })} />
                 <StatCard label="เลื่อนนัด" value={byStatus('เลื่อนนัด').length} Icon={CalendarDays} bg="bg-indigo-50" text="text-indigo-600" onClick={() => setListModal({ title: 'เลื่อนนัด', items: byStatus('เลื่อนนัด') })} />
@@ -1676,28 +1643,26 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
 
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              {/* Table header with search */}
-              <div className="px-5 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
+              <div className="px-5 py-3 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-2.5">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-blue-600" />
+                    <Calendar className="w-4 h-4 text-pink-600" />
                     <h2 className="font-bold text-gray-800 text-sm">ตารางนัดหมายวันที่ {fmtDateTH(reportDate)}</h2>
                   </div>
-                  <span className="text-xs font-bold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                  <span className="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full">
                     {daySearch.trim() ? (() => { const q = daySearch.trim().toLowerCase().replace(/[-\s]/g,''); return dayBookings.filter(b => (b.customerName||'').toLowerCase().includes(q)||(b.hn||'').toLowerCase().includes(q)||(b.phoneNumber||'').replace(/[-\s]/g,'').includes(q)||(b.procedure||'').toLowerCase().includes(q)).length; })() : dayBookings.length} / {dayBookings.length} รายการ
                   </span>
                 </div>
-                {/* Search box */}
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-3.5 w-3.5 text-blue-400" />
+                    <Search className="h-3.5 w-3.5 text-pink-400" />
                   </div>
                   <input
                     type="text"
                     value={daySearch}
                     onChange={e => setDaySearch(e.target.value)}
                     placeholder="ค้นหาในรายการวันนี้ด้วย ชื่อ, HN, เบอร์ หรือหัตถการ..."
-                    className="pl-9 pr-8 w-full rounded-xl border border-blue-100 bg-white/80 focus:bg-white focus:border-blue-400 focus:ring-1 focus:ring-blue-200 transition-all px-3 py-2 text-xs text-slate-700"
+                    className="pl-9 pr-8 w-full rounded-xl border border-pink-100 bg-white/80 focus:bg-white focus:border-pink-400 focus:ring-1 focus:ring-pink-200 transition-all px-3 py-2 text-xs text-slate-700"
                   />
                   {daySearch && (
                     <button onClick={() => setDaySearch('')} className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -1718,12 +1683,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   : dayBookings;
                 if (dayBookings.length === 0) return (
                   <div className="p-10 text-center">
-                    <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                      <Calendar className="w-8 h-8 text-blue-200" />
+                    <div className="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                      <Calendar className="w-8 h-8 text-pink-200" />
                     </div>
                     <p className="text-slate-400 text-sm font-medium">ไม่มีนัดหมายในวันนี้</p>
                     <button onClick={() => setAddBooking(EMPTY_BOOKING(reportDate))}
-                      className="mt-3 text-xs text-blue-500 font-bold hover:text-blue-700 flex items-center gap-1 mx-auto">
+                      className="mt-3 text-xs text-pink-500 font-bold hover:text-pink-700 flex items-center gap-1 mx-auto">
                       <Plus className="w-3.5 h-3.5" /> เพิ่มนัดหมาย
                     </button>
                   </div>
@@ -1732,7 +1697,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   <div className="p-8 text-center">
                     <Search className="w-8 h-8 text-slate-200 mx-auto mb-2" />
                     <p className="text-slate-400 text-sm font-medium">ไม่พบรายการที่ตรงกับ "{daySearch}"</p>
-                    <button onClick={() => setDaySearch('')} className="mt-2 text-xs text-blue-500 font-bold hover:text-blue-700">ล้างการค้นหา</button>
+                    <button onClick={() => setDaySearch('')} className="mt-2 text-xs text-pink-500 font-bold hover:text-pink-700">ล้างการค้นหา</button>
                   </div>
                 );
                 return (
@@ -1749,10 +1714,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                             ${newCust ? 'hover:bg-amber-50 border-l-2 border-amber-400' : 'hover:bg-slate-50 border-l-2 border-transparent'}`}>
                           <div className="text-slate-300 text-[10px] font-bold w-4 shrink-0 text-center">{idx + 1}</div>
                           <div className={`w-2 h-2 rounded-full shrink-0 ${sc.dot}`} />
-                          <div className="text-blue-700 font-bold text-sm w-12 shrink-0">{b.bookingTime ? `${b.bookingTime} น.` : '?'}</div>
+                          <div className="text-pink-700 font-bold text-sm w-12 shrink-0">{b.bookingTime ? `${b.bookingTime} น.` : '?'}</div>
                           <div className="flex-grow min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <p className={`font-bold text-sm truncate transition-colors ${newCust ? 'text-amber-800 group-hover:text-amber-900' : 'text-slate-800 group-hover:text-blue-700'}`}>
+                              <p className={`font-bold text-sm truncate transition-colors ${newCust ? 'text-amber-800 group-hover:text-amber-900' : 'text-slate-800 group-hover:text-pink-700'}`}>
                                 {b.customerName}
                               </p>
                               {newCust ? (
@@ -1768,7 +1733,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                           <div className="shrink-0 flex items-center gap-2">
                             <CallIcon className={`w-3.5 h-3.5 ${cc.text}`} />
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
-                            <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-500 transition-colors" />
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-500 transition-colors" />
                           </div>
                         </div>
                       );
@@ -1777,7 +1742,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 );
               })()}
             </div>
-            </>} {/* end !searchedBookings */}
+            </>}
           </>
         )}
         {listModal && <BookingListModal title={listModal.title} bookings={listModal.items} patients={patients} records={records} onClose={() => setListModal(null)} onSelectBooking={b => setSelectedBooking(b)} />}
@@ -1801,7 +1766,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const [start, setStart] = useState(firstDay);
     const [end, setEnd] = useState(todayStr());
     const [result, setResult] = useState(null);
-    // ✅ Drill-down: { bookerName, label, bookings[] }
     const [drillDown, setDrillDown] = useState(null);
 
     const generate = () => {
@@ -1809,8 +1773,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       const totals = { all: filtered.length, arrived: 0, upcoming: 0, rescheduled: 0, noShow: 0, cancelled: 0 };
       const byBooker = {};
 
-      // ✅ Normalize key: strip ALL invisible unicode + Thai-invisible chars, trim, collapse spaces
-      // Use lowercase key so "สเนล" and "สเนล " and "สเนล\u200B" all map to the same bucket
       const normalizeKey = (name) => (name || '')
         .replace(/[\u200B\u200C\u200D\uFEFF\u00A0\u2000-\u200A\u202F\u205F\u3000\t\r\n]/g, ' ')
         .trim()
@@ -1826,11 +1788,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         else if (s === 'ยกเลิกนัด') totals.cancelled++;
 
         const key = normalizeKey(b.bookerName) || 'ไม่ระบุ';
-        // Store displayName from first occurrence + bookings arrays per status
         if (!byBooker[key]) byBooker[key] = {
           displayName: (b.bookerName || '').replace(/[\u200B\u200C\u200D\uFEFF\u00A0]/g, '').trim().replace(/\s+/g, ' ') || 'ไม่ระบุ',
           total: 0, arrived: 0, upcoming: 0, rescheduled: 0, noShow: 0, cancelled: 0,
-          // ✅ store booking lists for drill-down modal
           list_all: [], list_arrived: [], list_upcoming: [], list_rescheduled: [], list_noShow: [], list_cancelled: [],
         };
         byBooker[key].total++;
@@ -1856,10 +1816,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               <div key={label} className="flex-1 w-full">
                 <label className="block text-sm font-bold text-gray-700 mb-2">{label}</label>
                 <input type="date" value={val} onChange={e => set(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-500" />
+                  className="w-full p-2.5 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-pink-500" />
               </div>
             ))}
-            <button onClick={generate} className="w-full sm:w-auto bg-blue-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-blue-700 transition-all flex justify-center items-center gap-2">
+            <button onClick={generate} className="w-full sm:w-auto bg-pink-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-pink-700 transition-all flex justify-center items-center gap-2">
               <RefreshCw className="w-4 h-4" /> สร้างรายงาน
             </button>
           </div>
@@ -1867,10 +1827,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         {result && (
           <>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5">
-              <h3 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-blue-600" /> สรุปรวมตามช่วงเวลา</h3>
+              <h3 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-pink-600" /> สรุปรวมตามช่วงเวลา</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                 {[
-                  { label: 'นัดรวมทั้งหมด', val: result.totals.all, from: 'from-blue-50', to: 'to-blue-100', text: 'text-blue-700', small: 'text-blue-600' },
+                  { label: 'นัดรวมทั้งหมด', val: result.totals.all, from: 'from-pink-50', to: 'to-pink-100', text: 'text-pink-700', small: 'text-pink-600' },
                   { label: 'มาแล้ว', val: result.totals.arrived, from: 'from-emerald-50', to: 'to-emerald-100', text: 'text-emerald-700', small: 'text-emerald-600' },
                   { label: 'ยังไม่มา', val: result.totals.upcoming, from: 'from-amber-50', to: 'to-amber-100', text: 'text-amber-700', small: 'text-amber-600' },
                   { label: 'เลื่อนนัด', val: result.totals.rescheduled, from: 'from-indigo-50', to: 'to-indigo-100', text: 'text-indigo-700', small: 'text-indigo-600' },
@@ -1885,8 +1845,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="px-5 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
-                <h3 className="text-base font-bold text-gray-800 flex items-center gap-2"><UsersRound className="w-5 h-5 text-blue-600" /> ผลการนัดแยกตามผู้นัด</h3>
+              <div className="px-5 py-4 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-gray-100">
+                <h3 className="text-base font-bold text-gray-800 flex items-center gap-2"><UsersRound className="w-5 h-5 text-pink-600" /> ผลการนัดแยกตามผู้นัด</h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -1902,7 +1862,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       const pct = s.total > 0 ? ((s.arrived / s.total) * 100).toFixed(1) : '0.0';
                       const pctNum = parseFloat(pct);
                       const pctColor = pctNum >= 70 ? 'bg-emerald-100 text-emerald-700' : pctNum >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700';
-                      // helper: open drill-down modal for this booker + status filter
                       const open = (label, list) => { if (list.length > 0) setDrillDown({ bookerName: s.displayName, label, bookings: list }); };
                       const CellBtn = ({ count, colorClass, list, label }) => count > 0 ? (
                         <button onClick={() => open(label, list)}
@@ -1911,15 +1870,15 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         </button>
                       ) : <span className="text-sm text-slate-300">0</span>;
                       return (
-                        <tr key={key} className="border-b border-slate-100 hover:bg-blue-50/40 transition-colors">
+                        <tr key={key} className="border-b border-slate-100 hover:bg-pink-50/40 transition-colors">
                           <td className="px-3 py-3 whitespace-nowrap">
                             <button onClick={() => open('ทั้งหมด', s.list_all)}
-                              className="font-bold text-gray-800 text-sm hover:text-blue-600 transition-colors text-left flex items-center gap-1.5 group">
+                              className="font-bold text-gray-800 text-sm hover:text-pink-600 transition-colors text-left flex items-center gap-1.5 group">
                               {s.displayName}
-                              <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-blue-400 shrink-0" />
+                              <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 shrink-0" />
                             </button>
                           </td>
-                          <td className="px-3 py-3 text-center"><CellBtn count={s.total} colorClass="text-blue-600" list={s.list_all} label="ทั้งหมด" /></td>
+                          <td className="px-3 py-3 text-center"><CellBtn count={s.total} colorClass="text-pink-600" list={s.list_all} label="ทั้งหมด" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.arrived} colorClass="text-emerald-600" list={s.list_arrived} label="มาแล้ว" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.upcoming} colorClass="text-amber-600" list={s.list_upcoming} label="ยังไม่มา" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.rescheduled} colorClass="text-indigo-600" list={s.list_rescheduled} label="เลื่อนนัด" /></td>
@@ -1936,35 +1895,32 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </>
         )}
 
-        {/* ✅ Drill-down modal: รายชื่อลูกค้าของผู้นัดคนนั้น */}
         {drillDown && (
           <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
             <div className="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[85vh]">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-blue-700 to-indigo-600 px-5 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl sm:rounded-t-3xl">
+              <div className="bg-gradient-to-r from-pink-700 to-rose-600 px-5 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl sm:rounded-t-3xl">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-white/20 rounded-xl"><UsersRound className="w-5 h-5" /></div>
                   <div>
                     <h3 className="font-bold text-base leading-tight">{drillDown.bookerName}</h3>
-                    <p className="text-blue-200 text-[11px]">{drillDown.label} · {drillDown.bookings.length} รายการ</p>
+                    <p className="text-pink-200 text-[11px]">{drillDown.label} · {drillDown.bookings.length} รายการ</p>
                   </div>
                 </div>
                 <button onClick={() => setDrillDown(null)} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               </div>
-              {/* List */}
               <div className="overflow-y-auto flex-grow p-4 space-y-2">
                 {drillDown.bookings.length === 0 ? (
                   <p className="text-center text-slate-400 py-8 text-sm">ไม่มีข้อมูล</p>
                 ) : [...drillDown.bookings].sort((a,b) => a.bookingDate.localeCompare(b.bookingDate) || (a.bookingTime||'').localeCompare(b.bookingTime||'')).map((b, idx) => {
                   const sc = STATUS_CONFIG[b.status] || STATUS_CONFIG['ยังไม่มา'];
                   return (
-                    <div key={b.id || idx} className="bg-white border-2 border-slate-100 rounded-2xl px-4 py-3 flex items-center gap-3 hover:border-blue-200 transition-colors">
+                    <div key={b.id || idx} className="bg-white border-2 border-slate-100 rounded-2xl px-4 py-3 flex items-center gap-3 hover:border-pink-200 transition-colors">
                       <div className="text-slate-300 text-[10px] font-bold w-5 shrink-0 text-center">{idx+1}</div>
                       <div className={`w-2 h-2 rounded-full shrink-0 ${sc.dot}`} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="font-bold text-slate-800 text-sm truncate">{b.customerName || 'ไม่มีชื่อ'}</p>
-                          {b.hn && <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><Hash className="w-2.5 h-2.5" />{b.hn}</span>}
+                          {b.hn && <span className="text-[10px] font-bold text-pink-500 bg-pink-50 px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><Hash className="w-2.5 h-2.5" />{b.hn}</span>}
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                           {b.phoneNumber && <span className="text-[11px] text-slate-400 flex items-center gap-0.5"><Phone className="w-2.5 h-2.5" />{b.phoneNumber}</span>}
@@ -1972,8 +1928,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         </div>
                       </div>
                       <div className="shrink-0 text-right">
-                        <p className="text-blue-600 font-bold text-xs">{fmtDateTH(b.bookingDate)}</p>
-                        <p className="text-blue-500 text-[11px]">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                        <p className="text-pink-600 font-bold text-xs">{fmtDateTH(b.bookingDate)}</p>
+                        <p className="text-pink-500 text-[11px]">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                         <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold ${sc.bg} ${sc.text}`}>{b.status}</span>
                       </div>
                     </div>
@@ -2224,22 +2180,22 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         <input type="file" ref={fileBeforeRef} onChange={e => handleImageAdd(e, 'before')} accept="image/*" multiple className="hidden" />
         <input type="file" ref={fileAfterRef} onChange={e => handleImageAdd(e, 'after')} accept="image/*" multiple className="hidden" />
 
-        <div className="flex gap-1 bg-purple-50 p-1 rounded-2xl mb-6">
-          <button onClick={() => setActiveSubTab('search')} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'search' ? 'bg-white text-purple-700 shadow-sm' : 'text-purple-400 hover:text-purple-600'}`}>
+        <div className="flex gap-1 bg-pink-50 p-1 rounded-2xl mb-6">
+          <button onClick={() => setActiveSubTab('search')} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'search' ? 'bg-white text-pink-700 shadow-sm' : 'text-pink-400 hover:text-pink-600'}`}>
             <Search className="w-4 h-4" /> ค้นหาประวัติลูกค้า
           </button>
-          <button onClick={() => { setActiveSubTab('add'); setFormData(EMPTY_RECORD(today)); resetImages(); }} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'add' ? 'bg-white text-purple-700 shadow-sm' : 'text-purple-400 hover:text-purple-600'}`}>
+          <button onClick={() => { setActiveSubTab('add'); setFormData(EMPTY_RECORD(today)); resetImages(); }} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'add' ? 'bg-white text-pink-700 shadow-sm' : 'text-pink-400 hover:text-pink-600'}`}>
             <Plus className="w-4 h-4" /> บันทึกประวัติใหม่
           </button>
         </div>
 
         {activeSubTab === 'add' && (
-          <div className="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden max-w-md mx-auto">
-            <div className="bg-gradient-to-r from-purple-700 to-purple-500 px-6 py-4 flex items-center gap-3">
+          <div className="bg-white rounded-2xl shadow-xl border border-pink-100 overflow-hidden max-w-md mx-auto">
+            <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-xl"><UserPlus className="w-5 h-5 text-white" /></div>
               <div>
                 <h2 className="text-base font-bold text-white">ลงทะเบียนลูกค้าใหม่</h2>
-                <p className="text-purple-200 text-[11px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
+                <p className="text-pink-200 text-[11px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
               </div>
             </div>
             <div className="p-6 space-y-4">
@@ -2250,16 +2206,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 { name: 'phone', label: 'เบอร์โทรศัพท์', Icon: Phone, req: false, ph: '08X-XXX-XXXX', type: 'tel' },
               ].map(({ name, label, Icon, req, ph, type }) => (
                 <div key={name}>
-                  <label className="block text-sm font-semibold text-purple-900 mb-1.5">{label} {req && <span className="text-red-500">*</span>}</label>
+                  <label className="block text-sm font-semibold text-pink-900 mb-1.5">{label} {req && <span className="text-red-500">*</span>}</label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Icon className="h-4 w-4 text-purple-400" /></div>
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Icon className="h-4 w-4 text-pink-400" /></div>
                     <input type={type || 'text'} name={name} value={formData[name]} onChange={handleInputChange} required={req} placeholder={ph}
-                      className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2.5 text-sm text-slate-700" />
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
                   </div>
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-semibold text-purple-900 mb-1.5 flex items-center gap-1.5"><Crown className="w-4 h-4 text-amber-500" /> ประเภทสมาชิก</label>
+                <label className="block text-sm font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5"><Crown className="w-4 h-4 text-amber-500" /> ประเภทสมาชิก</label>
                 <div className="grid grid-cols-1 gap-1.5">
                   {TIER_KEYS.map(key => {
                     const cfg = MEMBERSHIP_TIERS[key];
@@ -2269,7 +2225,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       <button key={key} type="button"
                         onClick={() => setFormData(f => ({ ...f, membershipTier: key }))}
                         className={`flex items-center gap-2 px-3 py-2 rounded-xl border-2 text-left transition-all text-sm font-bold
-                          ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-slate-200'}`}>
+                          ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-pink-200'}`}>
                         <IconC className={`w-4 h-4 shrink-0 ${isSelected ? cfg.badgeText : 'text-slate-300'}`} />
                         {cfg.label}
                         {isSelected && <span className="ml-auto text-[10px] text-emerald-600 font-bold">✓ เลือกแล้ว</span>}
@@ -2278,7 +2234,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   })}
                 </div>
               </div>
-              {/* ── Reviewer Toggle in register form ── */}
               <button
                 type="button"
                 onClick={() => setFormData(f => ({ ...f, isReviewer: !f.isReviewer }))}
@@ -2328,7 +2283,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 }}
                 disabled={submitting || !formData.fullName || !formData.hn}
                 className={`w-full py-3 px-4 rounded-xl text-white font-bold shadow-md transition-all flex justify-center items-center gap-2
-                  ${submitting || !formData.fullName || !formData.hn ? 'bg-purple-300 cursor-not-allowed' : 'bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                  ${submitting || !formData.fullName || !formData.hn ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
                 {submitting ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><UserPlus className="w-4 h-4" /> ลงทะเบียน</>}
               </button>
             </div>
@@ -2337,12 +2292,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
         {activeSubTab === 'search' && (
           <div>
-            <div className="bg-white p-4 rounded-2xl shadow-sm border border-purple-100 mb-4">
+            <div className="bg-white p-4 rounded-2xl shadow-sm border border-pink-100 mb-4">
               <div className="relative w-full">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><Search className="h-5 w-5 text-purple-400" /></div>
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><Search className="h-5 w-5 text-pink-400" /></div>
                 <input type="text" placeholder="ค้นหาลูกค้าด้วย ชื่อ, เบอร์โทรศัพท์ หรือ รหัส HN..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                  className="pl-12 w-full rounded-xl border border-purple-100 bg-purple-50/50 focus:bg-white focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all px-4 py-3.5 text-slate-700" />
-                {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute inset-y-0 right-0 pr-4 flex items-center text-purple-400 hover:text-purple-600"><X className="h-5 w-5 bg-purple-100 rounded-full p-0.5" /></button>}
+                  className="pl-12 w-full rounded-xl border border-pink-100 bg-pink-50/50 focus:bg-white focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all px-4 py-3.5 text-slate-700" />
+                {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute inset-y-0 right-0 pr-4 flex items-center text-pink-400 hover:text-pink-600"><X className="h-5 w-5 bg-pink-100 rounded-full p-0.5" /></button>}
               </div>
             </div>
 
@@ -2350,7 +2305,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               <button
                 onClick={() => setTierFilterKey('all')}
                 className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
-                  ${tierFilterKey === 'all' ? 'bg-purple-600 text-white border-purple-600' : 'bg-white text-slate-500 border-slate-200 hover:border-purple-300'}`}>
+                  ${tierFilterKey === 'all' ? 'bg-pink-600 text-white border-pink-600' : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
                 <Users className="w-3.5 h-3.5" /> ทั้งหมด
                 <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${tierFilterKey === 'all' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}`}>{tierCounts.all}</span>
               </button>
@@ -2362,14 +2317,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   <button key={key}
                     onClick={() => setTierFilterKey(key)}
                     className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
-                      ${isActive ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800 shadow-sm` : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}>
+                      ${isActive ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800 shadow-sm` : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
                     <IconC className={`w-3.5 h-3.5 ${isActive ? cfg.badgeText : 'text-slate-400'}`} />
                     {cfg.label}
                     <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${isActive ? cfg.badgeBg + ' ' + cfg.badgeText : 'bg-slate-100 text-slate-500'}`}>{tierCounts[key] || 0}</span>
                   </button>
                 );
               })}
-              {/* ── Reviewer filter tab ── */}
               <button
                 onClick={() => setTierFilterKey(tierFilterKey === 'reviewer' ? 'all' : 'reviewer')}
                 className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
@@ -2386,17 +2340,17 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
 
             <div className="mb-5 flex items-center justify-between px-1">
-              <h2 className="text-xl font-bold text-purple-900">
+              <h2 className="text-xl font-bold text-pink-900">
                 {searchQuery ? 'ผลการค้นหา' : tierFilterKey === 'reviewer' ? '⭐ ลูกค้ารีวิว' : 'รายชื่อลูกค้าทั้งหมด'}
               </h2>
-              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${tierFilterKey === 'reviewer' ? 'bg-pink-100 text-pink-700 border-pink-300' : 'bg-purple-100 text-purple-800 border-purple-200'}`}>{filteredPatients.length} ท่าน</span>
+              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${tierFilterKey === 'reviewer' ? 'bg-pink-100 text-pink-700 border-pink-300' : 'bg-pink-100 text-pink-800 border-pink-200'}`}>{filteredPatients.length} ท่าน</span>
             </div>
 
             {filteredPatients.length === 0 ? (
-              <div className="bg-white rounded-2xl border border-dashed border-purple-200 p-12 text-center shadow-sm">
-                <div className="bg-purple-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"><User className="w-10 h-10 text-purple-300" /></div>
-                <h3 className="text-lg font-bold text-purple-800 mb-1">{searchQuery ? 'ไม่พบชื่อลูกค้ารายนี้' : 'ยังไม่มีข้อมูลลูกค้า'}</h3>
-                <p className="text-purple-500 text-sm">{searchQuery ? 'ลองเปลี่ยนคำค้นหา' : 'กดแท็บ "+ บันทึกประวัติใหม่" เพื่อเพิ่มข้อมูลลูกค้าคนแรก'}</p>
+              <div className="bg-white rounded-2xl border border-dashed border-pink-200 p-12 text-center shadow-sm">
+                <div className="bg-pink-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"><User className="w-10 h-10 text-pink-300" /></div>
+                <h3 className="text-lg font-bold text-pink-800 mb-1">{searchQuery ? 'ไม่พบชื่อลูกค้ารายนี้' : 'ยังไม่มีข้อมูลลูกค้า'}</h3>
+                <p className="text-pink-500 text-sm">{searchQuery ? 'ลองเปลี่ยนคำค้นหา' : 'กดแท็บ "+ บันทึกประวัติใหม่" เพื่อเพิ่มข้อมูลลูกค้าคนแรก'}</p>
               </div>
             ) : (
               <div className="space-y-2">
@@ -2405,7 +2359,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   const totalImages = patient.records.reduce((s, r) => s + getRecordImages(r).length, 0);
                   const tierCfg = MEMBERSHIP_TIERS[patient.membershipTier] || MEMBERSHIP_TIERS[DEFAULT_TIER];
                   return (
-                    <div key={patient.hn} className={`bg-white rounded-2xl border-2 hover:shadow-md transition-all group ${tierCfg.badgeBorder} hover:border-purple-300`}>
+                    <div key={patient.hn} className={`bg-white rounded-2xl border-2 hover:shadow-md transition-all group ${tierCfg.badgeBorder} hover:border-pink-300`}>
                       <div className="px-4 py-3.5 flex items-center gap-3">
                         <div onClick={() => setPatientModalHN(patient.hn)}
                           className={`w-11 h-11 ${tierCfg.iconBg} rounded-full flex items-center justify-center shrink-0 transition-all duration-200 cursor-pointer shadow-sm`}>
@@ -2413,7 +2367,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                         </div>
                         <div className="flex-grow min-w-0 cursor-pointer" onClick={() => setPatientModalHN(patient.hn)}>
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <h3 className="text-sm font-bold text-slate-800 group-hover:text-purple-700 transition-colors truncate">{patient.fullName}{patient.nickname ? ` (${patient.nickname})` : ''}</h3>
+                            <h3 className="text-sm font-bold text-slate-800 group-hover:text-pink-700 transition-colors truncate">{patient.fullName}{patient.nickname ? ` (${patient.nickname})` : ''}</h3>
                             <MemberBadge tier={patient.membershipTier} size="xs" />
                             {patient.isReviewer && (
                               <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-700 border border-pink-300">
@@ -2427,8 +2381,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                             )}
                           </div>
                           <div className="flex flex-wrap items-center gap-x-2 mt-0.5">
-                            <span className="flex items-center text-[11px] text-slate-400 font-medium"><Hash className="w-2.5 h-2.5 mr-0.5 text-purple-300" />{patient.hn}</span>
-                            {patient.phone && <><span className="text-slate-200">·</span><span className="flex items-center text-[11px] text-slate-400 font-medium"><Phone className="w-2.5 h-2.5 mr-0.5 text-purple-300" />{patient.phone}</span></>}
+                            <span className="flex items-center text-[11px] text-slate-400 font-medium"><Hash className="w-2.5 h-2.5 mr-0.5 text-pink-300" />{patient.hn}</span>
+                            {patient.phone && <><span className="text-slate-200">·</span><span className="flex items-center text-[11px] text-slate-400 font-medium"><Phone className="w-2.5 h-2.5 mr-0.5 text-pink-300" />{patient.phone}</span></>}
                           </div>
                         </div>
                         <div className="shrink-0 flex items-center gap-2">
@@ -2436,7 +2390,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                             {totalSpend > 0 ? <p className="text-base font-bold text-green-600 leading-tight">{fmtMoney(totalSpend)}</p> : <p className="text-xs text-slate-300 font-medium">-</p>}
                             <div className="flex items-center justify-end gap-1 mt-0.5">
                               <span className="text-[11px] text-slate-400">{patient.count} ครั้ง</span>
-                              {totalImages > 0 && <><span className="text-slate-200">·</span><ImageIcon className="w-2.5 h-2.5 text-purple-300" /><span className="text-[11px] text-slate-400">{totalImages}</span></>}
+                              {totalImages > 0 && <><span className="text-slate-200">·</span><ImageIcon className="w-2.5 h-2.5 text-pink-300" /><span className="text-[11px] text-slate-400">{totalImages}</span></>}
                             </div>
                           </div>
                           <button
@@ -2447,10 +2401,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                           </button>
                           <button
                             onClick={e => { e.stopPropagation(); setEditPatientHN(patient.hn); setEditPatientForm({ fullName: patient.fullName, nickname: patient.nickname || '', phone: patient.phone || '', isReviewer: !!patient.isReviewer, lineUserId: patient.lineUserId || '' }); }}
-                            className="p-2 text-slate-300 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-colors shrink-0">
+                            className="p-2 text-slate-300 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition-colors shrink-0">
                             <FileEdit className="w-4 h-4" />
                           </button>
-                          <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-purple-500 transition-colors cursor-pointer" onClick={() => setPatientModalHN(patient.hn)} />
+                          <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-500 transition-colors cursor-pointer" onClick={() => setPatientModalHN(patient.hn)} />
                         </div>
                       </div>
                     </div>
@@ -2461,7 +2415,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </div>
         )}
 
-        {/* Patient Modal */}
         {patientModalHN && modalPatient && (() => {
           const allSorted = [...modalPatient.records].sort((a, b) => new Date(b.serviceDate) - new Date(a.serviceDate));
           const allBefore = allSorted.flatMap(r => (r.imagesBefore || r.images || []).map(src => ({ src, record: r })));
@@ -2490,8 +2443,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
           return (
             <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center" onClick={() => setPatientModalHN(null)}>
-              <div className="bg-[#f8f7fc] w-full sm:max-w-3xl sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: '92vh' }} onClick={e => e.stopPropagation()}>
-                <div className={`bg-gradient-to-br ${tierCfg.headerGradient} px-5 pt-5 pb-4 shrink-0`}>
+              <div className="bg-[#fffaff] w-full sm:max-w-3xl sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: '92vh' }} onClick={e => e.stopPropagation()}>
+                <div className={`bg-gradient-to-br ${tierCfg.headerGradient.replace('purple','pink').replace('violet','rose')} px-5 pt-5 pb-4 shrink-0`}>
                   <div className="w-10 h-1 bg-white/30 rounded-full mx-auto mb-4 sm:hidden" />
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
@@ -2505,11 +2458,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                           {modalPatient.isReviewer && (
                             <span className="flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-pink-400/30 text-white border border-pink-300/40">
                               <Star className="w-2.5 h-2.5" /> รีวิว
-                            </span>
-                          )}
-                          {modalPatient.lineUserId && (
-                            <span className="flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-400/30 text-white border border-green-300/40">
-                              <MessageCircle className="w-2.5 h-2.5" /> LINE ✓
                             </span>
                           )}
                         </div>
@@ -2528,11 +2476,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   </div>
                   <div className="grid grid-cols-3 gap-2 mt-3">
                     <button onClick={() => { resetProc(); setProcForm(f => ({ ...f, serviceDate: today })); setAddProcPatient({ fullName: modalPatient.fullName, hn: modalPatient.hn, phone: modalPatient.phone || '', membershipTier: tier }); setPatientModalHN(null); }}
-                      className="bg-white text-purple-700 hover:bg-purple-50 text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
+                      className="bg-white text-pink-700 hover:bg-pink-50 text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
                       <Plus className="w-4 h-4 mr-2" /> เพิ่มประวัติ
                     </button>
                     <button onClick={() => { onAddBookingForPatient(modalPatient); setPatientModalHN(null); }}
-                      className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
+                      className="bg-pink-500 hover:bg-pink-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
                       <CalendarPlus className="w-4 h-4 mr-2" /> นัดหมายใหม่
                     </button>
                     <button onClick={() => { setMembershipSelectorHN(modalPatient.hn); setPatientModalHN(null); }}
@@ -2544,13 +2492,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 <div className="overflow-y-auto flex-grow">
                   {(allBefore.length > 0 || allAfter.length > 0) && (
                     <div className="p-4 pb-2">
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center"><ImageIcon className="w-3.5 h-3.5 mr-1.5 text-purple-400" />คลังรูปภาพทั้งหมด</p>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center"><ImageIcon className="w-3.5 h-3.5 mr-1.5 text-pink-400" />คลังรูปภาพทั้งหมด</p>
                       <CarouselRow items={allBefore} label="🔴 ก่อนทำ" labelColor="text-red-500" />
                       <CarouselRow items={allAfter} label="🟢 หลังทำ" labelColor="text-green-600" />
                     </div>
                   )}
                   <div className="px-4 pt-3 pb-5">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center"><Clock className="w-3.5 h-3.5 mr-1.5 text-purple-400" />ประวัติการรับบริการ · {modalPatient.count} ครั้ง</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center"><Clock className="w-3.5 h-3.5 mr-1.5 text-pink-400" />ประวัติการรับบริการ · {modalPatient.count} ครั้ง</p>
                     <div className="space-y-2">
                       {allSorted.map((record, idx) => {
                         const recBefore = record.imagesBefore || record.images || [];
@@ -2566,14 +2514,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                                   {allRecImages.length > 1 && <div className="absolute inset-0 bg-black/40 flex items-center justify-center"><span className="text-white text-[10px] font-bold">+{allRecImages.length - 1}</span></div>}
                                 </div>
                               ) : (
-                                <div className="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center shrink-0 border border-purple-100"><ImageIcon className="w-5 h-5 text-purple-200" /></div>
+                                <div className="w-14 h-14 rounded-xl bg-pink-50 flex items-center justify-center shrink-0 border border-pink-100"><ImageIcon className="w-5 h-5 text-pink-200" /></div>
                               )}
                               <div className="flex-grow min-w-0">
                                 <div className="flex items-start justify-between gap-2">
                                   <div className="min-w-0">
                                     <div className="flex items-center gap-1.5 mb-0.5">
-                                      {idx === 0 && <span className="bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md shrink-0">ล่าสุด</span>}
-                                      <span className="text-[11px] text-slate-400 font-medium flex items-center"><Calendar className="w-2.5 h-2.5 mr-0.5 text-purple-300" />{fmt(record.serviceDate)}</span>
+                                      {idx === 0 && <span className="bg-pink-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md shrink-0">ล่าสุด</span>}
+                                      <span className="text-[11px] text-slate-400 font-medium flex items-center"><Calendar className="w-2.5 h-2.5 mr-0.5 text-pink-300" />{fmt(record.serviceDate)}</span>
                                     </div>
                                     <p className="text-sm font-bold text-slate-800 leading-snug truncate">{record.service}</p>
                                     {record.note && <p className="text-[11px] text-slate-400 mt-0.5 truncate">📝 {record.note}</p>}
@@ -2585,16 +2533,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                                     )}
                                     {(record.doctor || record.sale) && (
                                       <div className="flex flex-wrap gap-x-3 mt-1.5">
-                                        {record.doctor && <span className="flex items-center text-[11px] text-slate-500"><Stethoscope className="w-2.5 h-2.5 mr-0.5 text-purple-400" />{record.doctor}</span>}
-                                        {record.sale && <span className="flex items-center text-[11px] text-slate-500"><ShoppingBag className="w-2.5 h-2.5 mr-0.5 text-purple-400" />{record.sale}</span>}
-                                        {record.assistant && <span className="flex items-center text-[11px] text-slate-500"><Users className="w-2.5 h-2.5 mr-0.5 text-purple-400" />{record.assistant}</span>}
+                                        {record.doctor && <span className="flex items-center text-[11px] text-slate-500"><Stethoscope className="w-2.5 h-2.5 mr-0.5 text-pink-400" />{record.doctor}</span>}
+                                        {record.sale && <span className="flex items-center text-[11px] text-slate-500"><ShoppingBag className="w-2.5 h-2.5 mr-0.5 text-pink-400" />{record.sale}</span>}
+                                        {record.assistant && <span className="flex items-center text-[11px] text-slate-500"><Users className="w-2.5 h-2.5 mr-0.5 text-pink-400" />{record.assistant}</span>}
                                       </div>
                                     )}
                                   </div>
                                   <div className="shrink-0 text-right">
                                     {record.price && <p className="text-sm font-bold text-green-700">{fmtMoney(record.price)}</p>}
                                     <div className="flex items-center justify-end gap-0.5 mt-1">
-                                      <button onClick={() => { openEditModal(record); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"><FileEdit className="w-3.5 h-3.5" /></button>
+                                      <button onClick={() => { openEditModal(record); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-colors"><FileEdit className="w-3.5 h-3.5" /></button>
                                       <button onClick={() => { setRecordToDelete(record.id); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"><Trash2 className="w-3.5 h-3.5" /></button>
                                     </div>
                                   </div>
@@ -2612,7 +2560,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           );
         })()}
 
-        {/* Membership Selector Modal */}
         {membershipSelectorHN && (() => {
           const patient = groupedMap.get(membershipSelectorHN);
           if (!patient) return null;
@@ -2629,18 +2576,17 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           );
         })()}
 
-        {/* Edit Record Modal */}
         {editingRecord && (
-          <div className="fixed inset-0 bg-purple-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-10">
+          <div className="fixed inset-0 bg-pink-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-10">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-              <div className="bg-gradient-to-r from-blue-700 to-blue-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-2xl">
-                <h2 className="text-lg font-bold flex items-center"><FileEdit className="w-5 h-5 mr-2 text-blue-200" /> แก้ไขประวัติหัตถการ</h2>
+              <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-2xl">
+                <h2 className="text-lg font-bold flex items-center"><FileEdit className="w-5 h-5 mr-2 text-pink-200" /> แก้ไขประวัติหัตถการ</h2>
                 <button onClick={() => { setEditingRecord(null); setFormData(EMPTY_RECORD(today)); resetImages(); }} className="p-1 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               </div>
               <div className="overflow-y-auto p-6 flex-grow">
                 <form id="editRecordForm" onSubmit={handleUpdate} className="space-y-4">
                   <div className="space-y-3">
-                    <h3 className="text-xs font-bold text-blue-400 uppercase tracking-wider border-b pb-1">รายละเอียดหัตถการ</h3>
+                    <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider border-b pb-1">รายละเอียดหัตถการ</h3>
                     {[
                       { name: 'serviceDate', label: 'วันที่เข้ารับบริการ', type: 'date', req: true },
                       { name: 'service', label: 'รายการหัตถการ', type: 'text', req: true },
@@ -2649,18 +2595,18 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       <div key={name}>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">{label} {req && <span className="text-red-500">*</span>}</label>
                         <input type={type} name={name} value={formData[name]} onChange={handleInputChange} required={req} min={type === 'number' ? '0' : undefined}
-                          className="w-full rounded-lg border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50" />
+                          className="w-full rounded-lg border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50" />
                       </div>
                     ))}
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">หมายเหตุเพิ่มเติม</label>
                       <textarea name="note" value={formData.note} onChange={handleInputChange} rows="2"
-                        className="w-full rounded-lg border border-slate-200 focus:border-blue-500 focus:ring focus:ring-blue-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50 resize-none" />
+                        className="w-full rounded-lg border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50 resize-none" />
                     </div>
                   </div>
-                  <StaffFields theme="blue" formData={formData} handleInputChange={handleInputChange} />
+                  <StaffFields theme="pink" formData={formData} handleInputChange={handleInputChange} />
                   <div>
-                    <h3 className="text-xs font-bold text-blue-400 uppercase tracking-wider border-b pb-1 mb-3">รูปภาพก่อน / หลังทำ</h3>
+                    <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider border-b pb-1 mb-3">รูปภาพก่อน / หลังทำ</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <ImageUploadBlock type="before" existingImages={editBeforeImages} setExistingImages={setEditBeforeImages} newPreviews={beforePreviews} onRemoveNew={removeNewImage} onClickAdd={() => fileBeforeRef.current?.click()} onLightbox={(imgs, idx) => setLightbox({ images: imgs, index: idx })} />
                       <ImageUploadBlock type="after" existingImages={editAfterImages} setExistingImages={setEditAfterImages} newPreviews={afterPreviews} onRemoveNew={removeNewImage} onClickAdd={() => fileAfterRef.current?.click()} onLightbox={(imgs, idx) => setLightbox({ images: imgs, index: idx })} />
@@ -2671,7 +2617,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               <div className="border-t border-slate-100 p-4 bg-gray-50 flex justify-end gap-3 shrink-0 rounded-b-2xl">
                 <button type="button" onClick={() => { setEditingRecord(null); setFormData(EMPTY_RECORD(today)); resetImages(); }} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
                 <button type="submit" form="editRecordForm" disabled={submitting || !formData.service || !formData.serviceDate || staffRequired}
-                  className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center ${submitting || !formData.service || !formData.serviceDate || staffRequired ? 'bg-blue-300 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                  className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center ${submitting || !formData.service || !formData.serviceDate || staffRequired ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
                   {submitting ? <><Sparkles className="animate-spin w-5 h-5 mr-2" /> กำลังบันทึก...</> : 'บันทึกการแก้ไข'}
                 </button>
               </div>
@@ -2679,20 +2625,19 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </div>
         )}
 
-        {/* Add Procedure Modal */}
         {addProcPatient && (
           <>
             <input type="file" ref={procBeforeRef} onChange={e => handleProcImageAdd(e,'before')} accept="image/*" multiple className="hidden" />
             <input type="file" ref={procAfterRef}  onChange={e => handleProcImageAdd(e,'after')}  accept="image/*" multiple className="hidden" />
-            <div className="fixed inset-0 bg-purple-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <div className="fixed inset-0 bg-pink-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
               <div className="bg-white w-full sm:max-w-2xl rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92vh]">
-                <div className="bg-gradient-to-r from-purple-700 to-purple-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
+                <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-white/20 rounded-xl"><FileEdit className="w-5 h-5" /></div>
                     <div>
                       <h2 className="text-base font-bold leading-tight">เพิ่มประวัติหัตถการ</h2>
                       <div className="flex items-center gap-2">
-                        <p className="text-purple-200 text-[11px]">{addProcPatient.fullName} · {addProcPatient.hn}</p>
+                        <p className="text-pink-200 text-[11px]">{addProcPatient.fullName} · {addProcPatient.hn}</p>
                         <MemberBadge tier={addProcPatient.membershipTier} size="xs" />
                       </div>
                     </div>
@@ -2701,35 +2646,35 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 </div>
                 <div className="overflow-y-auto flex-grow p-5 space-y-4">
                   <div className="space-y-3">
-                    <h3 className="text-xs font-bold text-purple-400 uppercase tracking-wider border-b pb-1">รายละเอียดหัตถการ</h3>
+                    <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider border-b pb-1">รายละเอียดหัตถการ</h3>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">วันที่ <span className="text-red-500">*</span></label>
                         <input type="date" value={procForm.serviceDate} onChange={e => setProcForm(f => ({ ...f, serviceDate: e.target.value }))} required
-                          className="w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2 text-sm text-slate-700" />
+                          className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" />
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">ยอดชำระ (บาท)</label>
-                        <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><DollarSign className="h-4 w-4 text-purple-400" /></div>
+                        <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><DollarSign className="h-4 w-4 text-pink-400" /></div>
                           <input type="number" value={procForm.price} onChange={e => setProcForm(f => ({ ...f, price: e.target.value }))} min="0" placeholder="ไม่ระบุ"
-                            className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2 text-sm text-slate-700" /></div>
+                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">รายการหัตถการ <span className="text-red-500">*</span></label>
-                      <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><FileText className="h-4 w-4 text-purple-400" /></div>
+                      <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><FileText className="h-4 w-4 text-pink-400" /></div>
                         <input type="text" value={procForm.service} onChange={e => setProcForm(f => ({ ...f, service: e.target.value }))} required placeholder="เช่น ฉีดโบท็อกซ์กราม"
-                          className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2 text-sm text-slate-700" /></div>
+                          className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">หมายเหตุ</label>
                       <textarea value={procForm.note} onChange={e => setProcForm(f => ({ ...f, note: e.target.value }))} rows="2" placeholder="หมายเหตุเพิ่มเติม"
-                        className="w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2 text-sm text-slate-700 resize-none" />
+                        className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 resize-none" />
                     </div>
                   </div>
-                  <StaffFields theme="purple" formData={procStaff} handleInputChange={e => setProcStaff(s => ({ ...s, [e.target.name]: e.target.value }))} />
+                  <StaffFields theme="pink" formData={procStaff} handleInputChange={e => setProcStaff(s => ({ ...s, [e.target.name]: e.target.value }))} />
                   <div>
-                    <h3 className="text-xs font-bold text-purple-400 uppercase tracking-wider border-b pb-1 mb-3">รูปภาพก่อน / หลังทำ</h3>
+                    <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider border-b pb-1 mb-3">รูปภาพก่อน / หลังทำ</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <ImageUploadBlock type="before" existingImages={[]} setExistingImages={() => {}} newPreviews={procBeforePrev}
                         onRemoveNew={(_, idx) => { setProcBefore(p => p.filter((__, i) => i !== idx)); setProcBeforePrev(p => p.filter((__, i) => i !== idx)); }}
@@ -2744,7 +2689,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                   <button type="button" onClick={() => { setAddProcPatient(null); resetProc(); }} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
                   <button onClick={handleProcSubmit} disabled={procSubmitting || !procForm.service || !procForm.serviceDate}
                     className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center gap-2
-                      ${procSubmitting || !procForm.service || !procForm.serviceDate ? 'bg-purple-300 cursor-not-allowed' : 'bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                      ${procSubmitting || !procForm.service || !procForm.serviceDate ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
                     {procSubmitting ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึกประวัติ</>}
                   </button>
                 </div>
@@ -2753,11 +2698,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
           </>
         )}
 
-        {/* Edit Patient Info Modal */}
         {editPatientHN && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
-              <div className="bg-gradient-to-r from-purple-700 to-purple-500 px-5 py-4 flex items-center justify-between text-white">
+            <div className="bg-white w-full max-sm rounded-3xl shadow-2xl overflow-hidden">
+              <div className="bg-gradient-to-r from-pink-700 to-pink-500 px-5 py-4 flex items-center justify-between text-white">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 bg-white/20 rounded-xl"><FileEdit className="w-4 h-4" /></div>
                   <h3 className="font-bold text-base">แก้ไขข้อมูลลูกค้า</h3>
@@ -2767,34 +2711,31 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
               <div className="p-5 space-y-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5">ชื่อ-นามสกุล <span className="text-red-500">*</span></label>
-                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-4 w-4 text-purple-400" /></div>
+                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-4 w-4 text-pink-400" /></div>
                     <input autoFocus type="text" value={editPatientForm.fullName}
                       onChange={e => setEditPatientForm(f => ({ ...f, fullName: e.target.value }))}
-                      className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5">ชื่อเล่น</label>
-                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Star className="h-4 w-4 text-purple-300" /></div>
+                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Star className="h-4 w-4 text-pink-300" /></div>
                     <input type="text" value={editPatientForm.nickname || ''}
                       onChange={e => setEditPatientForm(f => ({ ...f, nickname: e.target.value }))}
                       placeholder="เช่น นุ่น, มิ้น, แป้ง"
-                      className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5">เบอร์โทรศัพท์</label>
-                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-4 w-4 text-purple-400" /></div>
+                  <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Phone className="h-4 w-4 text-pink-400" /></div>
                     <input type="tel" value={editPatientForm.phone}
                       onChange={e => setEditPatientForm(f => ({ ...f, phone: e.target.value }))}
                       placeholder="08X-XXX-XXXX"
-                      className="pl-10 w-full rounded-xl border border-purple-200 focus:border-purple-500 focus:ring focus:ring-purple-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
-
-                {/* ── LINE User ID ── */}
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5 flex items-center gap-1.5">
                     <MessageCircle className="w-3.5 h-3.5 text-green-500" />
                     LINE User ID
-                    <span className="text-[10px] font-normal text-slate-400">(สำหรับส่งแจ้งเตือนอัตโนมัติ)</span>
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -2808,14 +2749,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                       className="pl-10 w-full rounded-xl border border-green-200 focus:border-green-500 focus:ring focus:ring-green-200 px-3 py-2.5 text-sm text-slate-700 font-mono"
                     />
                   </div>
-                  {editPatientForm.lineUserId && (
-                    <p className="mt-1 text-[11px] text-green-600 font-medium flex items-center gap-1">
-                      ✓ พร้อมรับการแจ้งเตือนผ่าน LINE
-                    </p>
-                  )}
                 </div>
-
-                {/* ── Reviewer Toggle ── */}
                 <button
                   type="button"
                   onClick={() => setEditPatientForm(f => ({ ...f, isReviewer: !f.isReviewer }))}
@@ -2829,22 +2763,18 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                     </div>
                     <div className="text-left">
                       <p className={`font-bold text-sm ${editPatientForm.isReviewer ? 'text-pink-700' : 'text-slate-600'}`}>ลูกค้ารีวิว</p>
-                      <p className={`text-[10px] font-medium ${editPatientForm.isReviewer ? 'text-pink-500' : 'text-slate-400'}`}>
-                        {editPatientForm.isReviewer ? '✓ เปิดใช้งาน — แสดง badge รีวิว' : 'แตะเพื่อเปิดใช้งาน'}
-                      </p>
                     </div>
                   </div>
                   <div className={`w-11 h-6 rounded-full transition-all relative ${editPatientForm.isReviewer ? 'bg-pink-500' : 'bg-slate-300'}`}>
                     <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all shadow-sm ${editPatientForm.isReviewer ? 'left-6' : 'left-1'}`} />
                   </div>
                 </button>
-                <p className="text-[11px] text-slate-400">การแก้ไขจะอัปเดตทุก record ของ HN นี้</p>
               </div>
               <div className="px-5 pb-5 flex gap-3">
                 <button onClick={() => setEditPatientHN(null)} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
                 <button onClick={saveEditPatient} disabled={editPatientSaving || !editPatientForm.fullName}
                   className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                    ${editPatientSaving || !editPatientForm.fullName ? 'bg-purple-300 cursor-not-allowed' : 'bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 active:scale-[0.98]'}`}>
+                    ${editPatientSaving || !editPatientForm.fullName ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 active:scale-[0.98]'}`}>
                   {editPatientSaving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึก</>}
                 </button>
               </div>
@@ -2865,40 +2795,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
           </div>
         )}
-
-        {alertMessage && (
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
-              <div className="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
-              <h3 className="text-lg font-bold text-slate-800 mb-2">แจ้งเตือนจากระบบ</h3>
-              <p className="text-slate-600 text-sm mb-6 whitespace-pre-line">{alertMessage}</p>
-              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-purple-600 hover:bg-purple-700 transition-colors shadow-md">ตกลงเข้าใจแล้ว</button>
-            </div>
-          </div>
-        )}
-
-        {lightbox && (() => {
-          const { images, index } = lightbox;
-          const total = images.length;
-          return (
-            <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center"
-              onClick={() => setLightbox(null)}
-              onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
-              onTouchEnd={e => {
-                if (touchStartX.current === null) return;
-                const diff = touchStartX.current - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) { diff > 0 ? setLightbox(lb => ({ ...lb, index: (lb.index + 1) % total })) : setLightbox(lb => ({ ...lb, index: (lb.index - 1 + total) % total })); }
-                touchStartX.current = null;
-              }}>
-              <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 z-10"><X className="w-7 h-7" /></button>
-              {total > 1 && <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-bold px-3 py-1.5 rounded-full z-10">{index + 1} / {total}</div>}
-              {total > 1 && <button onClick={e => { e.stopPropagation(); setLightbox(lb => ({ ...lb, index: (lb.index - 1 + total) % total })); }} className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white rounded-full p-2.5 z-10 backdrop-blur-sm"><ChevronLeft className="w-6 h-6" /></button>}
-              <img key={index} src={images[index]} alt="" className="max-w-[85vw] max-h-[85vh] object-contain rounded-lg shadow-2xl select-none" style={{ animation: 'fadeIn 0.18s ease' }} onClick={e => e.stopPropagation()} draggable={false} />
-              {total > 1 && <button onClick={e => { e.stopPropagation(); setLightbox(lb => ({ ...lb, index: (lb.index + 1) % total })); }} className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white rounded-full p-2.5 z-10 backdrop-blur-sm"><ChevronRight className="w-6 h-6" /></button>}
-              <style>{`@keyframes fadeIn { from { opacity: 0.4; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }`}</style>
-            </div>
-          );
-        })()}
       </div>
     );
   };
@@ -2953,7 +2849,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         loaded.bookings = true;
         checkDone();
       }, err => {
-        console.error("Bookings error:", err);
         loaded.bookings = true;
         checkDone();
       });
@@ -2987,30 +2882,30 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     ];
 
     if (loading) return (
-      <div className="min-h-screen bg-purple-50 flex items-center justify-center">
-        <div className="text-purple-600 flex flex-col items-center">
-          <Sparkles className="w-10 h-10 mb-4 text-purple-500 animate-spin" />
-          <p className="text-lg font-medium">กำลังโหลดระบบ Florenza Clinic...</p>
+      <div className="min-h-screen bg-pink-50 flex items-center justify-center">
+        <div className="text-pink-600 flex flex-col items-center">
+          <Sparkles className="w-10 h-10 mb-4 text-pink-500 animate-spin" />
+          <p className="text-lg font-medium">กำลังโหลดระบบ Bornsong Clinic...</p>
         </div>
       </div>
     );
 
     return (
-      <div className="min-h-screen bg-[#F5F3FF] text-slate-800 font-sans pb-16">
+      <div className="min-h-screen bg-[#FFF0F5] text-slate-800 font-sans pb-16">
         {isOffline && (
           <div className="bg-red-500 text-white text-sm font-bold px-4 py-2 text-center">
             ⚠️ ข้อมูลไม่ได้ถูกจัดเก็บในฐานข้อมูลจริง (Offline Mode)
           </div>
         )}
 
-        <header className="bg-gradient-to-r from-purple-900 via-purple-800 to-blue-800 text-white shadow-lg sticky top-0 z-20">
+        <header className="bg-gradient-to-r from-pink-900 via-pink-700 to-rose-600 text-white shadow-lg sticky top-0 z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="bg-white p-2 rounded-full shadow-md"><Database className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" /></div>
+                <div className="bg-white p-2 rounded-full shadow-md"><Database className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" /></div>
                 <div>
-                  <h1 className="text-lg sm:text-2xl font-bold tracking-tight">Florenza Clinic</h1>
-                  <p className="text-purple-200 text-[10px] sm:text-sm font-medium">ระบบจัดการประวัติ · นัดหมาย · ติดตาม</p>
+                  <h1 className="text-lg sm:text-2xl font-bold tracking-tight">Bornsong Clinic</h1>
+                  <p className="text-pink-200 text-[10px] sm:text-sm font-medium">ระบบจัดการประวัติ · นัดหมาย · ติดตาม</p>
                 </div>
               </div>
               <div className={`hidden md:flex items-center px-3 py-1.5 rounded-full text-xs font-bold border ${isOffline ? 'bg-red-500/20 text-red-100 border-red-400/30' : 'bg-green-500/20 text-green-100 border-green-400/30'}`}>
@@ -3023,7 +2918,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto">
               {TABS.map(({ id, label, Icon }) => (
                 <button key={id} onClick={() => setActiveTab(id)}
-                  className={`py-3 px-4 sm:px-6 font-semibold text-sm transition-colors border-b-2 whitespace-nowrap flex items-center gap-2 ${activeTab === id ? 'border-white text-white bg-white/10' : 'border-transparent text-purple-200 hover:text-white hover:bg-white/10'}`}>
+                  className={`py-3 px-4 sm:px-6 font-semibold text-sm transition-colors border-b-2 whitespace-nowrap flex items-center gap-2 ${activeTab === id ? 'border-white text-white bg-white/10' : 'border-transparent text-pink-200 hover:text-white hover:bg-white/10'}`}>
                   <Icon className="w-4 h-4" /> {label}
                 </button>
               ))}
@@ -3046,10 +2941,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         {alertMessage && (
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
-              <div className="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
+              <div className="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">แจ้งเตือน</h3>
               <p className="text-slate-600 text-sm mb-6 whitespace-pre-line">{alertMessage}</p>
-              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-purple-600 hover:bg-purple-700 transition-colors">ตกลง</button>
+              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-pink-600 hover:bg-pink-700 transition-colors">ตกลง</button>
             </div>
           </div>
         )}
