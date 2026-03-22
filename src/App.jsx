@@ -18,16 +18,15 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   } from 'firebase/firestore';
 
   // ─── Firebase ───────────────────────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey: "AIzaSyDQ-e0qxax1gs6RqPVVyVNeHHAUZoDR7NE",
-  authDomain: "bornsong-clinic-db-893e7.firebaseapp.com",
-  projectId: "bornsong-clinic-db-893e7",
-  storageBucket: "bornsong-clinic-db-893e7.firebasestorage.app",
-  messagingSenderId: "840582556242",
-  appId: "1:840582556242:web:de331510c1417d47548d8b",
-};
-const APP_ID = 'bornsong-clinic-db-893e7';
-
+  const firebaseConfig = {
+    apiKey: "AIzaSyDQ-e0qxax1gs6RqPVVyVNeHHAUZoDR7NE",
+    authDomain: "bornsong-clinic-db-893e7.firebaseapp.com",
+    projectId: "bornsong-clinic-db-893e7",
+    storageBucket: "bornsong-clinic-db-893e7.firebasestorage.app",
+    messagingSenderId: "840582556242",
+    appId: "1:840582556242:web:de331510c1417d47548d8b",
+  };
+  const APP_ID = 'bornsong-clinic-db';
   let app, auth, db;
   try {
     setLogLevel('silent');
@@ -55,19 +54,19 @@ const APP_ID = 'bornsong-clinic-db-893e7';
     'Premier card': {
       label: 'Premier Card',
       Icon: BadgeCheck,
-      gradient: 'from-pink-100 to-pink-200',
-      badgeBg: 'bg-pink-100',
-      badgeText: 'text-pink-700',
-      badgeBorder: 'border-pink-300',
-      iconBg: 'bg-pink-500',
+      gradient: 'from-blue-100 to-sky-200',
+      badgeBg: 'bg-blue-100',
+      badgeText: 'text-blue-700',
+      badgeBorder: 'border-blue-300',
+      iconBg: 'bg-blue-500',
       iconColor: 'text-white',
-      headerGradient: 'from-pink-600 to-rose-500',
-      ring: 'ring-pink-300',
-      dot: 'bg-pink-500',
+      headerGradient: 'from-blue-600 to-sky-500',
+      ring: 'ring-blue-300',
+      dot: 'bg-blue-500',
       order: 1,
     },
-    'Bornsong card': {
-      label: 'Bornsong Card',
+    'Flora card': {
+      label: 'Flora Card',
       Icon: Gem,
       gradient: 'from-emerald-100 to-teal-200',
       badgeBg: 'bg-emerald-100',
@@ -83,15 +82,15 @@ const APP_ID = 'bornsong-clinic-db-893e7';
     'Vip': {
       label: 'VIP',
       Icon: Award,
-      gradient: 'from-rose-100 to-pink-200',
-      badgeBg: 'bg-rose-100',
-      badgeText: 'text-rose-700',
-      badgeBorder: 'border-rose-300',
-      iconBg: 'bg-rose-600',
+      gradient: 'from-violet-100 to-purple-200',
+      badgeBg: 'bg-violet-100',
+      badgeText: 'text-violet-700',
+      badgeBorder: 'border-violet-300',
+      iconBg: 'bg-violet-600',
       iconColor: 'text-white',
-      headerGradient: 'from-rose-700 to-pink-500',
-      ring: 'ring-rose-300',
-      dot: 'bg-rose-500',
+      headerGradient: 'from-violet-700 to-purple-500',
+      ring: 'ring-violet-300',
+      dot: 'bg-violet-500',
       order: 3,
     },
     'VVip': {
@@ -147,12 +146,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
         <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-pink-800 to-pink-600 px-5 py-4 flex items-center justify-between text-white">
+          <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-5 py-4 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
               <div className="p-2 bg-white/20 rounded-xl"><Crown className="w-5 h-5" /></div>
               <div>
                 <h3 className="font-bold text-base leading-tight">ประเภทสมาชิก</h3>
-                <p className="text-pink-200 text-[10px]">{patientName}</p>
+                <p className="text-pink-50 text-[10px]">{patientName}</p>
               </div>
             </div>
             <button onClick={onClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
@@ -177,7 +176,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     <p className={`font-bold text-sm ${isSelected ? 'text-slate-800' : 'text-slate-600'}`}>{cfg.label}</p>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
-                    ${isSelected ? 'border-pink-600 bg-pink-600' : 'border-slate-300'}`}>
+                    ${isSelected ? 'border-pink-400 bg-pink-400' : 'border-slate-300'}`}>
                     {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
                   </div>
                 </button>
@@ -188,7 +187,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             <button onClick={onClose} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
             <button onClick={handleSave} disabled={saving}
               className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                ${saving ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-700 to-pink-500 hover:from-pink-800 active:scale-[0.98]'}`}>
+                ${saving ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 active:scale-[0.98]'}`}>
               {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึก</>}
             </button>
           </div>
@@ -240,17 +239,18 @@ const APP_ID = 'bornsong-clinic-db-893e7';
   const MONTH_TH = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
   const DAY_TH_SHORT = ['อา','จ','อ','พ','พฤ','ศ','ส'];
 
+  // หมายเหตุ: สีของสถานะยังคงเดิมเพื่อไม่ให้กระทบต่อการใช้งานและความเข้าใจของระบบ
   const STATUS_CONFIG = {
-    'ยังไม่มา':      { bg: 'bg-pink-100',    text: 'text-pink-700',   dot: 'bg-pink-500',   border: 'border-pink-300' },
-    'มาแล้ว':       { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
-    'เลื่อนนัด':    { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
-    'ไม่มาตามนัด': { bg: 'bg-rose-100',    text: 'text-rose-700',   dot: 'bg-rose-500',     border: 'border-rose-300' },
-    'ยกเลิกนัด':    { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',      border: 'border-red-400' },
+    'ยังไม่มา':     { bg: 'bg-blue-100',   text: 'text-blue-700',   dot: 'bg-blue-500',   border: 'border-blue-300' },
+    'มาแล้ว':      { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
+    'เลื่อนนัด':   { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
+    'ไม่มาตามนัด': { bg: 'bg-rose-100',   text: 'text-rose-700',   dot: 'bg-rose-500',    border: 'border-rose-300' },
+    'ยกเลิกนัด':   { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',     border: 'border-red-400' },
   };
 
   const CALL_CONFIG = {
     'ยังไม่โทรคอนเฟิม':   { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', icon: PhoneMissed },
-    'คอนเฟิมนัดแล้ว':     { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
+    'คอนเฟิมนัดแล้ว':    { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
     'คอนเฟิมลูกค้าที่จะมาตามนัด': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: PhoneCall },
     'ไม่รับสายรอโทรใหม่': { bg: 'bg-amber-50',  text: 'text-amber-700',  border: 'border-amber-400',  icon: PhoneOff },
   };
@@ -296,7 +296,6 @@ const APP_ID = 'bornsong-clinic-db-893e7';
     return `⚠ พบนัดซ้ำในวันที่เลือก:\n${lines.join('\n')}`;
   };
 
-  // ─── Get patient tier from records ───────────────────────────────────────────
   const getPatientTier = (records, hn) => {
     const recs = records.filter(r => r.hn === hn);
     if (!recs.length) return DEFAULT_TIER;
@@ -340,7 +339,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <img src={src} alt="" className="w-full h-full object-cover" />
               <button type="button" onClick={ev => { ev.stopPropagation(); onRemoveNew(type, idx); }}
                 className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"><X className="w-2.5 h-2.5" /></button>
-              <div className="absolute bottom-0 left-0 right-0 bg-pink-500/70 text-[9px] text-white text-center py-0.5">ใหม่</div>
+              <div className="absolute bottom-0 left-0 right-0 bg-pink-400/80 text-[9px] text-white text-center py-0.5">ใหม่</div>
             </div>
           ))}
           {total < 5 && (
@@ -355,10 +354,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
   };
 
   const StaffFields = ({ formData, handleInputChange, theme = 'pink' }) => {
-    const ring = theme === 'pink' ? 'focus:border-pink-500 focus:ring focus:ring-pink-200 border-pink-200' : 'focus:border-pink-500 focus:ring focus:ring-pink-200 border-pink-200';
-    const icon = 'text-pink-400';
-    const label = 'text-pink-900';
-    const head = 'text-pink-400';
+    const ring = theme === 'pink' ? 'focus:border-pink-400 focus:ring focus:ring-pink-200 border-slate-200' : 'focus:border-pink-400 focus:ring focus:ring-pink-200 border-pink-200';
+    const icon = theme === 'pink' ? 'text-pink-400' : 'text-pink-400';
+    const label = theme === 'pink' ? 'text-slate-700' : 'text-pink-600';
+    const head = theme === 'pink' ? 'text-pink-400' : 'text-pink-400';
     return (
       <div className="space-y-3">
         <h3 className={`text-xs font-bold ${head} uppercase tracking-wider border-b pb-1`}>ทีมผู้ดูแล</h3>
@@ -425,12 +424,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
         <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-pink-600 to-rose-500 px-5 py-4 flex items-center justify-between text-white">
+          <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-5 py-4 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
               <div className="p-2 bg-white/20 rounded-xl"><UserPlus className="w-5 h-5" /></div>
               <div>
                 <h3 className="font-bold text-base leading-tight">ลงทะเบียนลูกค้าใหม่</h3>
-                <p className="text-pink-100 text-[10px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
+                <p className="text-pink-50 text-[10px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
               </div>
             </div>
             <button onClick={onClose} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
@@ -443,7 +442,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <input autoFocus type="text" value={regForm.fullName}
                   onChange={e => { setRegForm(f => ({ ...f, fullName: e.target.value })); setErr(''); }}
                   placeholder="เช่น สมหญิง สวยงาม"
-                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
@@ -453,7 +452,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <input type="text" value={regForm.nickname}
                   onChange={e => setRegForm(f => ({ ...f, nickname: e.target.value }))}
                   placeholder="เช่น นุ่น, มิ้น, แป้ง"
-                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
@@ -463,7 +462,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <input type="text" value={regForm.hn}
                   onChange={e => { setRegForm(f => ({ ...f, hn: e.target.value })); setErr(''); }}
                   placeholder="เช่น HN12345"
-                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
@@ -473,7 +472,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <input type="tel" value={regForm.phone}
                   onChange={e => setRegForm(f => ({ ...f, phone: e.target.value }))}
                   placeholder="08X-XXX-XXXX"
-                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
+                  className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
               </div>
             </div>
             <div>
@@ -489,7 +488,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-slate-200'}`}>
                       <IconC className={`w-4 h-4 shrink-0 ${isSelected ? cfg.badgeText : 'text-slate-300'}`} />
                       {cfg.label}
-                      {isSelected && <span className="ml-auto text-[10px] font-bold text-pink-600">✓ เลือกแล้ว</span>}
+                      {isSelected && <span className="ml-auto text-[10px] font-bold text-pink-500">✓ เลือกแล้ว</span>}
                     </button>
                   );
                 })}
@@ -501,7 +500,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             <button onClick={onClose} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
             <button onClick={handleSubmit} disabled={saving || !regForm.fullName.trim() || !regForm.hn.trim()}
               className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                ${saving || !regForm.fullName.trim() || !regForm.hn.trim() ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 active:scale-[0.98]'}`}>
+                ${saving || !regForm.fullName.trim() || !regForm.hn.trim() ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 active:scale-[0.98]'}`}>
               {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><UserPlus className="w-4 h-4" /> ลงทะเบียน</>}
             </button>
           </div>
@@ -623,7 +622,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         {showRegister && <RegisterPatientModal onClose={() => setShowRegister(false)} onRegistered={handleRegistered} />}
         <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
           <div className="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92vh]">
-            <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
+            <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-xl"><CalendarPlus className="w-5 h-5" /></div>
                 <h2 className="text-lg font-bold">{booking.id ? 'แก้ไขนัดหมาย' : 'เพิ่มนัดหมายใหม่'}</h2>
@@ -636,7 +635,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <div className="flex gap-1.5 bg-white/70 p-1 rounded-xl border border-pink-100">
                   <button type="button" onClick={() => switchMode('existing')}
                     className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5
-                      ${custMode === 'existing' ? 'bg-pink-600 text-white shadow-sm' : 'text-pink-500 hover:text-pink-700'}`}>
+                      ${custMode === 'existing' ? 'bg-pink-400 text-white shadow-sm' : 'text-pink-500 hover:text-pink-600'}`}>
                     <Star className="w-3 h-3" /> ลูกค้าเดิม (มี HN)
                   </button>
                   <button type="button" onClick={() => switchMode('new')}
@@ -649,9 +648,9 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 {custMode === 'existing' && (
                   <div className="space-y-2">
                     {selectedPatient ? (
-                      <div className="flex items-center gap-3 bg-white border-2 border-pink-400 rounded-xl px-3 py-2.5">
+                      <div className="flex items-center gap-3 bg-white border-2 border-pink-300 rounded-xl px-3 py-2.5">
                         <div className="w-9 h-9 bg-pink-100 rounded-full flex items-center justify-center shrink-0">
-                          <User className="w-4 h-4 text-pink-600" />
+                          <User className="w-4 h-4 text-pink-500" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
@@ -660,7 +659,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                             {selectedPatient.isReviewer && <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-600 border border-pink-200"><Star className="w-2 h-2" />รีวิว</span>}
                           </div>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="flex items-center text-[11px] text-pink-600 font-bold"><Hash className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.hn}</span>
+                            <span className="flex items-center text-[11px] text-pink-500 font-bold"><Hash className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.hn}</span>
                             {selectedPatient.phone && <span className="flex items-center text-[11px] text-slate-400"><Phone className="w-2.5 h-2.5 mr-0.5" />{selectedPatient.phone}</span>}
                           </div>
                         </div>
@@ -676,7 +675,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                             onChange={e => { setHnSearch(e.target.value); setShowDropdown(true); }}
                             onFocus={() => setShowDropdown(true)}
                             placeholder="ค้นหาชื่อ, HN หรือเบอร์โทร..."
-                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm bg-white" />
+                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm bg-white" />
                           {hnSearch && (
                             <button type="button" onClick={() => { setHnSearch(''); setShowDropdown(false); }}
                               className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -692,7 +691,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                               <div key={p.hn} onClick={() => selectPatient(p)}
                                 className="flex items-center gap-3 px-4 py-2.5 hover:bg-pink-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0">
                                 <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center shrink-0">
-                                  <User className="w-3.5 h-3.5 text-pink-500" />
+                                  <User className="w-3.5 h-3.5 text-pink-400" />
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-1.5 flex-wrap">
@@ -718,12 +717,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         <div>
                           <label className="block text-xs font-bold text-slate-500 mb-1">เบอร์โทรศัพท์ <span className="text-red-500">*</span></label>
                           <input name="phoneNumber" value={form.phoneNumber} onChange={handleChange} required placeholder="08x-xxx-xxxx"
-                            className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
+                            className="w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                         </div>
                         <div>
                           <label className="block text-xs font-bold text-slate-500 mb-1">ชื่อ (แก้ไขได้)</label>
                           <input name="customerName" value={form.customerName} onChange={handleChange}
-                            className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
+                            className="w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                         </div>
                       </div>
                     )}
@@ -731,7 +730,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     <div className="border-t border-pink-100 pt-2">
                       <p className="text-[10px] text-slate-400 font-medium mb-1.5">มาครั้งแรก ยังไม่มีข้อมูลในระบบ?</p>
                       <button type="button" onClick={() => setShowRegister(true)}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-pink-700 bg-pink-50 hover:bg-pink-500 hover:text-white border-2 border-pink-300 hover:border-pink-500 rounded-xl transition-all">
+                        className="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-pink-600 bg-pink-50 hover:bg-pink-400 hover:text-white border-2 border-pink-300 hover:border-pink-400 rounded-xl transition-all">
                         <UserPlus className="w-4 h-4" /> ลงทะเบียนลูกค้าใหม่
                       </button>
                     </div>
@@ -766,12 +765,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">วันที่ <span className="text-red-500">*</span></label>
                     <input type="date" name="bookingDate" value={form.bookingDate} onChange={handleChange} required
-                      className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
+                      className="w-full rounded-xl border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">เวลา <span className="text-red-500">*</span></label>
                     <select name="bookingTime" value={form.bookingTime} onChange={handleChange} required
-                      className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white">
+                      className="w-full rounded-xl border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white">
                       <option value="">เลือกเวลา</option>
                       {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
                     </select>
@@ -780,12 +779,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">หัตถการ <span className="text-red-500">*</span></label>
                   <input name="procedure" value={form.procedure} onChange={handleChange} required placeholder="ระบุบริการที่ต้องการรับ"
-                    className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
+                    className="w-full rounded-xl border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">ชื่อผู้นัด</label>
                   <input name="bookerName" value={form.bookerName} onChange={handleChange} placeholder="ชื่อผู้ดำเนินการจอง"
-                    className="w-full rounded-xl border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
+                    className="w-full rounded-xl border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm bg-white" />
                 </div>
               </div>
             </form>
@@ -793,9 +792,9 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <button type="button" onClick={onClose} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
               <button onClick={handleSubmit} disabled={saving || dupWarn.startsWith('⚠')}
                 className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center gap-2 ${
-                  saving ? 'bg-pink-300 cursor-not-allowed' :
+                  saving ? 'bg-pink-200 cursor-not-allowed' :
                   dupWarn.startsWith('⚠') ? 'bg-amber-300 cursor-not-allowed' :
-                  'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'
+                  'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 hover:shadow-lg active:scale-[0.98]'
                 }`}>
                 {saving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> :
                 dupWarn.startsWith('⚠') ? <><AlertTriangle className="w-4 h-4" /> พบนัดซ้ำ</> :
@@ -863,6 +862,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
     const doReschedule = async () => {
       if (!reschedDate || !reschedTime) return;
+
       const dups = findDuplicateBookings(allBookings, {
         hn: booking.hn,
         name: booking.customerName,
@@ -893,6 +893,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
     const doNextBooking = async () => {
       if (!nextDate || !nextTime || !nextProc) return;
+
       const dups = findDuplicateBookings(allBookings, {
         hn: booking.hn,
         name: booking.customerName,
@@ -900,6 +901,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         date: nextDate,
         excludeId: booking.id,
       });
+
       if (dups.length) {
         const warn = buildDupWarning(dups, {
           hn: booking.hn,
@@ -909,6 +911,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         alert(`❌ ไม่สามารถจองได้\n\n${warn}`);
         return;
       }
+
       setUpdating(true);
       await addDoc(BOOKINGS_PATH(), {
         bookingDate: nextDate, bookingTime: nextTime,
@@ -933,7 +936,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <UserPlus className="w-3 h-3" /> ลูกค้าใหม่
                 </span>
               ) : (
-                <span className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-pink-100 text-pink-700 border border-pink-300">
+                <span className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-pink-100 text-pink-600 border border-pink-300">
                   <Star className="w-3 h-3" /> ลูกค้าเก่า
                 </span>
               )}
@@ -944,7 +947,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           <div className="overflow-y-auto flex-grow px-6 pb-4 space-y-4">
             <div>
               <h4 className="text-2xl font-bold text-slate-900 mb-0.5">{booking.customerName || 'ไม่มีชื่อ'}</h4>
-              <div className="flex items-center gap-2 text-pink-600 font-bold text-sm">
+              <div className="flex items-center gap-2 text-pink-500 font-bold text-sm">
                 <Hash className="w-3.5 h-3.5" /><span>HN: {booking.hn || 'ลูกค้าใหม่'}</span>
               </div>
             </div>
@@ -963,7 +966,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         onUpdateCallStatus(booking.id, opt);
                       }}
                       className={`flex items-center gap-2.5 cursor-pointer p-2 rounded-xl border transition-all hover:border-pink-300 ${isSelected ? `${cc.border} ${cc.bg}` : 'border-slate-200 bg-white'}`}>
-                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-pink-500 bg-pink-500' : 'border-slate-300 bg-white'}`}>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-pink-400 bg-pink-400' : 'border-slate-300 bg-white'}`}>
                         {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                       </div>
                       <IconC className={`w-3.5 h-3.5 ${isSelected ? cc.text : 'text-slate-400'}`} />
@@ -993,8 +996,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             <div className="flex flex-wrap gap-2">
               {[
                 { label: 'มาแล้ว', bg: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-700', status: 'มาแล้ว' },
-                { label: 'ยังไม่มา', bg: 'bg-pink-100 hover:bg-pink-200 text-pink-700', status: 'ยังไม่มา' },
-                { label: 'ไม่มา', bg: 'bg-rose-100 hover:bg-rose-200 text-rose-600', status: 'ไม่มาตามนัด' },
+                { label: 'ยังไม่มา', bg: 'bg-blue-100 hover:bg-blue-200 text-blue-700', status: 'ยังไม่มา' },
+                { label: 'ไม่มา', bg: 'bg-rose-100 hover:bg-rose-200 text-rose-600', status: 'ไม่มาตามนัด' }, // สีของสถานะไม่มาตามนัด เป็น Rose อยู่แล้ว (ไม่แก้ไขตามที่ตกลง)
               ].map(({ label, bg, status }) => (
                 <button key={label} onClick={() => doStatus(status)} disabled={updating}
                   className={`flex-1 min-w-[70px] ${bg} py-2.5 rounded-xl text-sm font-bold transition-all active:scale-95 disabled:opacity-50`}>{label}</button>
@@ -1069,6 +1072,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               </button>
             </div>
 
+            {/* ── Delete Password Modal ── */}
             {showDeleteModal && (
               <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[80] flex items-center justify-center p-4">
                 <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
@@ -1187,7 +1191,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${sc.bg} ${sc.text}`}>{b.status}</span>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-pink-600 font-bold text-sm">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                    <p className="text-pink-500 font-bold text-sm">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-300 mt-1 ml-auto" />
                   </div>
                 </div>
@@ -1240,7 +1244,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
     return (
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="bg-gradient-to-r from-pink-500 to-rose-400 px-4 py-3 space-y-2.5">
+        {/* Header with nav + search */}
+        <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-4 py-3 space-y-2.5">
           <div className="flex items-center justify-between text-white">
             <div className="flex items-center gap-2">
               <button onClick={prevMonth} className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"><ChevronLeft className="w-4 h-4" /></button>
@@ -1249,6 +1254,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             </div>
             <button onClick={goToday} className="text-xs font-bold bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition-colors">วันนี้</button>
           </div>
+          {/* Search box */}
           <div className="relative" ref={calSearchRef}>
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search className="h-3.5 w-3.5 text-white/60" />
@@ -1268,14 +1274,15 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           </div>
         </div>
 
+        {/* Search results list */}
         {searchResults && (
           <div className="max-h-[420px] overflow-y-auto">
             <div className="px-4 py-2.5 bg-pink-50 border-b border-pink-100 flex items-center justify-between sticky top-0 z-10">
               <div className="flex items-center gap-2">
                 <Search className="w-3.5 h-3.5 text-pink-500" />
-                <span className="text-xs font-bold text-pink-700">ผลการค้นหา "{calSearch}"</span>
+                <span className="text-xs font-bold text-pink-600">ผลการค้นหา "{calSearch}"</span>
               </div>
-              <span className="text-[10px] font-bold bg-pink-600 text-white px-2.5 py-1 rounded-full">{searchResults.length} รายการ</span>
+              <span className="text-[10px] font-bold bg-pink-400 text-white px-2.5 py-1 rounded-full">{searchResults.length} รายการ</span>
             </div>
             {searchResults.length === 0 ? (
               <div className="py-10 text-center">
@@ -1299,7 +1306,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       <div className={`w-2 h-2 rounded-full shrink-0 ${sc.dot}`} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <p className="font-bold text-sm text-slate-800 truncate group-hover:text-pink-700 transition-colors">{b.customerName || 'ไม่มีชื่อ'}</p>
+                          <p className="font-bold text-sm text-slate-800 truncate group-hover:text-pink-500 transition-colors">{b.customerName || 'ไม่มีชื่อ'}</p>
                           {newCust && (
                             <span className="shrink-0 flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-700 border border-amber-300">
                               <UserPlus className="w-2.5 h-2.5" /> ใหม่
@@ -1313,8 +1320,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         </div>
                       </div>
                       <div className="shrink-0 text-right">
-                        <p className="text-[11px] font-bold text-pink-600">{dateLabel}</p>
-                        <p className="text-[11px] text-pink-500">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                        <p className="text-[11px] font-bold text-pink-500">{dateLabel}</p>
+                        <p className="text-[11px] text-pink-400">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                         <span className={`inline-block mt-0.5 text-[9px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
                       </div>
                       <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 shrink-0" />
@@ -1326,11 +1333,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           </div>
         )}
 
+        {/* Calendar grid — hidden while searching */}
         {!searchResults && (
           <>
             <div className="grid grid-cols-7 bg-slate-50 border-b border-slate-100">
               {DAY_TH_SHORT.map((d, i) => (
-                <div key={i} className={`text-center py-2 text-xs font-bold ${i === 0 ? 'text-red-500' : i === 6 ? 'text-pink-500' : 'text-slate-500'}`}>{d}</div>
+                <div key={i} className={`text-center py-2 text-xs font-bold ${i === 0 ? 'text-red-500' : i === 6 ? 'text-blue-500' : 'text-slate-500'}`}>{d}</div>
               ))}
             </div>
             <div className="grid grid-cols-7 divide-x divide-y divide-slate-100">
@@ -1347,7 +1355,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <div key={day} onClick={() => onSelectDate(dateKey)}
                     className={`min-h-[70px] sm:min-h-[90px] p-1 cursor-pointer transition-all hover:bg-pink-50 group relative ${isToday ? 'bg-pink-50/70' : ''}`}>
                     <div className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold mb-1
-                      ${isToday ? 'bg-pink-500 text-white' : isWeekend ? (colIdx===0?'text-red-500':'text-pink-500') : 'text-slate-700'}`}>{day}</div>
+                      ${isToday ? 'bg-pink-400 text-white' : isWeekend ? (colIdx===0?'text-red-500':'text-blue-500') : 'text-slate-700'}`}>{day}</div>
                     <div className="space-y-0.5">
                       {dayBookings.slice(0, 3).map((b, bi) => {
                         const sc = STATUS_CONFIG[b.status] || STATUS_CONFIG['ยังไม่มา'];
@@ -1364,12 +1372,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       {dayBookings.length > 3 && <div className="text-[9px] text-slate-400 font-bold pl-0.5">+{dayBookings.length - 3} อื่นๆ</div>}
                     </div>
                     {activeBookings.length > 0 && (
-                      <div className="absolute top-1 right-1 w-4 h-4 bg-pink-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                      <div className="absolute top-1 right-1 w-4 h-4 bg-pink-400 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
                         {activeBookings.length}
                       </div>
                     )}
                     <button onClick={e => { e.stopPropagation(); onAddBooking(dateKey); }}
-                      className="absolute bottom-1 right-1 w-5 h-5 bg-pink-500 text-white rounded-full flex items-center justify-center hover:bg-pink-600">
+                      className="absolute bottom-1 right-1 w-5 h-5 bg-pink-400 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-sm hover:bg-pink-500">
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
@@ -1450,16 +1458,16 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           <div className="flex items-center gap-2">
             <div className="flex items-center bg-slate-100 rounded-xl p-1 gap-1">
               <button onClick={() => setViewMode('calendar')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'calendar' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'calendar' ? 'bg-white text-pink-500 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 <Grid className="w-3.5 h-3.5" /> ปฏิทิน
               </button>
               <button onClick={() => setViewMode('list')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'list' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === 'list' ? 'bg-white text-pink-500 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 <List className="w-3.5 h-3.5" /> รายการ
               </button>
             </div>
             <button onClick={() => setAddBooking(EMPTY_BOOKING(reportDate))}
-              className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm text-sm active:scale-95">
+              className="flex items-center gap-2 bg-pink-400 hover:bg-pink-500 text-white font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm text-sm active:scale-95">
               <Plus className="w-4 h-4" /> เพิ่มคิว
             </button>
           </div>
@@ -1482,7 +1490,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 value={bookingSearch}
                 onChange={e => setBookingSearch(e.target.value)}
                 placeholder="ค้นหาการจองด้วย HN, ชื่อ หรือเบอร์โทร..."
-                className="pl-11 pr-10 w-full rounded-2xl border border-pink-100 bg-white focus:bg-white focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all px-4 py-3 text-sm text-slate-700 shadow-sm"
+                className="pl-11 pr-10 w-full rounded-2xl border border-pink-100 bg-white focus:bg-white focus:border-pink-300 focus:ring-2 focus:ring-pink-100 transition-all px-4 py-3 text-sm text-slate-700 shadow-sm"
               />
               {bookingSearch && (
                 <button onClick={() => setBookingSearch('')} className="absolute inset-y-0 right-0 pr-4 flex items-center">
@@ -1493,7 +1501,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
             {searchedBookings && (
               <div className="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
-                <div className="px-5 py-3 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-100 flex items-center justify-between">
+                <div className="px-5 py-3 bg-pink-50 border-b border-pink-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Search className="w-4 h-4 text-pink-500" />
                     <h2 className="font-bold text-gray-800 text-sm">ผลการค้นหา: "{bookingSearch}"</h2>
@@ -1535,7 +1543,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                           </div>
                           <div className="shrink-0 text-right">
                             <p className="text-[11px] text-slate-500 font-bold">{fmtDateTH(b.bookingDate)}</p>
-                            <p className="text-pink-600 font-bold text-xs">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                            <p className="text-pink-500 font-bold text-xs">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                             <span className={`inline-block mt-0.5 text-[9px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
                           </div>
                           <CallIcon className={`w-3.5 h-3.5 shrink-0 ${cc.text}`} />
@@ -1550,14 +1558,14 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             {!searchedBookings && <>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-3 py-2 shadow-sm hover:border-pink-300 transition-colors">
-                <div className="p-1.5 bg-pink-50 text-pink-600 rounded-lg shrink-0"><Calendar className="w-4 h-4" /></div>
+                <div className="p-1.5 bg-pink-50 text-pink-500 rounded-lg shrink-0"><Calendar className="w-4 h-4" /></div>
                 <div className="flex flex-col">
                   <label className="text-[9px] uppercase font-bold text-gray-400 tracking-wider">วันที่ดูรายงาน</label>
                   <input type="date" value={reportDate} onChange={e => { setReportDate(e.target.value); setDaySearch(''); }}
                     className="text-sm font-bold text-slate-800 outline-none bg-transparent cursor-pointer" />
                 </div>
               </div>
-              <button onClick={() => setViewMode('calendar')} className="flex items-center gap-1.5 text-xs text-pink-500 hover:text-pink-700 font-bold bg-pink-50 hover:bg-pink-100 px-3 py-2 rounded-xl transition-colors">
+              <button onClick={() => setViewMode('calendar')} className="flex items-center gap-1.5 text-xs text-pink-500 hover:text-pink-600 font-bold bg-pink-50 hover:bg-pink-100 px-3 py-2 rounded-xl transition-colors">
                 <Grid className="w-3.5 h-3.5" /> ดูปฏิทิน
               </button>
             </div>
@@ -1579,14 +1587,14 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   </div>
                 </div>
                 <div onClick={() => setListModal({ title: '⭐ ลูกค้าเก่า', items: returningCustomerBookings })}
-                  className="cursor-pointer hover:-translate-y-1 bg-gradient-to-br from-pink-50 to-rose-100 p-4 sm:p-5 rounded-2xl shadow-sm border border-pink-200 flex items-center gap-4 hover:shadow-lg transition-all group">
-                  <div className="p-3 bg-pink-500 text-white rounded-2xl shadow-sm shrink-0 group-hover:scale-110 transition-transform">
+                  className="cursor-pointer hover:-translate-y-1 bg-gradient-to-br from-pink-50 to-pink-100 p-4 sm:p-5 rounded-2xl shadow-sm border border-pink-200 flex items-center gap-4 hover:shadow-lg transition-all group">
+                  <div className="p-3 bg-pink-400 text-white rounded-2xl shadow-sm shrink-0 group-hover:scale-110 transition-transform">
                     <Star className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] sm:text-xs uppercase font-bold text-pink-600 tracking-wider leading-tight">ลูกค้าเก่า</p>
-                    <h3 className="text-3xl sm:text-4xl font-bold text-pink-800 leading-none mt-0.5">{returningCustomerBookings.length}</h3>
-                    <p className="text-[10px] text-pink-500 font-medium mt-0.5">{dayBookings.length > 0 ? Math.round((returningCustomerBookings.length / dayBookings.length) * 100) : 0}% ของวัน</p>
+                    <p className="text-[10px] sm:text-xs uppercase font-bold text-pink-500 tracking-wider leading-tight">ลูกค้าเก่า</p>
+                    <h3 className="text-3xl sm:text-4xl font-bold text-pink-700 leading-none mt-0.5">{returningCustomerBookings.length}</h3>
+                    <p className="text-[10px] text-pink-400 font-medium mt-0.5">{dayBookings.length > 0 ? Math.round((returningCustomerBookings.length / dayBookings.length) * 100) : 0}% ของวัน</p>
                   </div>
                 </div>
               </div>
@@ -1621,7 +1629,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 <CalendarCheck className="w-3.5 h-3.5" /> สถานะนัดหมาย
               </p>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-                <StatCard label="ทั้งหมด (รายวัน)" value={dayBookings.length} Icon={Users} bg="bg-pink-50" text="text-pink-600" onClick={() => setListModal({ title: 'ทั้งหมด', items: byStatus('ทั้งหมด') })} />
+                <StatCard label="ทั้งหมด (รายวัน)" value={dayBookings.length} Icon={Users} bg="bg-pink-50" text="text-pink-500" onClick={() => setListModal({ title: 'ทั้งหมด', items: byStatus('ทั้งหมด') })} />
                 <StatCard label="มาแล้ว" value={byStatus('มาแล้ว').length} Icon={CheckCircle} bg="bg-emerald-50" text="text-emerald-600" onClick={() => setListModal({ title: 'มาแล้ว', items: byStatus('มาแล้ว') })} />
                 <StatCard label="ยังไม่มา" value={byStatus('ยังไม่มา').length} Icon={Clock} bg="bg-amber-50" text="text-amber-600" onClick={() => setListModal({ title: 'ยังไม่มา', items: byStatus('ยังไม่มา') })} />
                 <StatCard label="เลื่อนนัด" value={byStatus('เลื่อนนัด').length} Icon={CalendarDays} bg="bg-indigo-50" text="text-indigo-600" onClick={() => setListModal({ title: 'เลื่อนนัด', items: byStatus('เลื่อนนัด') })} />
@@ -1643,10 +1651,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             </div>
 
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="px-5 py-3 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-gray-100">
+              <div className="px-5 py-3 bg-pink-50 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-2.5">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-pink-600" />
+                    <Calendar className="w-4 h-4 text-pink-500" />
                     <h2 className="font-bold text-gray-800 text-sm">ตารางนัดหมายวันที่ {fmtDateTH(reportDate)}</h2>
                   </div>
                   <span className="text-xs font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full">
@@ -1662,7 +1670,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     value={daySearch}
                     onChange={e => setDaySearch(e.target.value)}
                     placeholder="ค้นหาในรายการวันนี้ด้วย ชื่อ, HN, เบอร์ หรือหัตถการ..."
-                    className="pl-9 pr-8 w-full rounded-xl border border-pink-100 bg-white/80 focus:bg-white focus:border-pink-400 focus:ring-1 focus:ring-pink-200 transition-all px-3 py-2 text-xs text-slate-700"
+                    className="pl-9 pr-8 w-full rounded-xl border border-pink-100 bg-white/80 focus:bg-white focus:border-pink-300 focus:ring-1 focus:ring-pink-200 transition-all px-3 py-2 text-xs text-slate-700"
                   />
                   {daySearch && (
                     <button onClick={() => setDaySearch('')} className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -1688,7 +1696,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     </div>
                     <p className="text-slate-400 text-sm font-medium">ไม่มีนัดหมายในวันนี้</p>
                     <button onClick={() => setAddBooking(EMPTY_BOOKING(reportDate))}
-                      className="mt-3 text-xs text-pink-500 font-bold hover:text-pink-700 flex items-center gap-1 mx-auto">
+                      className="mt-3 text-xs text-pink-500 font-bold hover:text-pink-600 flex items-center gap-1 mx-auto">
                       <Plus className="w-3.5 h-3.5" /> เพิ่มนัดหมาย
                     </button>
                   </div>
@@ -1697,7 +1705,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <div className="p-8 text-center">
                     <Search className="w-8 h-8 text-slate-200 mx-auto mb-2" />
                     <p className="text-slate-400 text-sm font-medium">ไม่พบรายการที่ตรงกับ "{daySearch}"</p>
-                    <button onClick={() => setDaySearch('')} className="mt-2 text-xs text-pink-500 font-bold hover:text-pink-700">ล้างการค้นหา</button>
+                    <button onClick={() => setDaySearch('')} className="mt-2 text-xs text-pink-500 font-bold hover:text-pink-600">ล้างการค้นหา</button>
                   </div>
                 );
                 return (
@@ -1714,10 +1722,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                             ${newCust ? 'hover:bg-amber-50 border-l-2 border-amber-400' : 'hover:bg-slate-50 border-l-2 border-transparent'}`}>
                           <div className="text-slate-300 text-[10px] font-bold w-4 shrink-0 text-center">{idx + 1}</div>
                           <div className={`w-2 h-2 rounded-full shrink-0 ${sc.dot}`} />
-                          <div className="text-pink-700 font-bold text-sm w-12 shrink-0">{b.bookingTime ? `${b.bookingTime} น.` : '?'}</div>
+                          <div className="text-pink-600 font-bold text-sm w-12 shrink-0">{b.bookingTime ? `${b.bookingTime} น.` : '?'}</div>
                           <div className="flex-grow min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <p className={`font-bold text-sm truncate transition-colors ${newCust ? 'text-amber-800 group-hover:text-amber-900' : 'text-slate-800 group-hover:text-pink-700'}`}>
+                              <p className={`font-bold text-sm truncate transition-colors ${newCust ? 'text-amber-800 group-hover:text-amber-900' : 'text-slate-800 group-hover:text-pink-500'}`}>
                                 {b.customerName}
                               </p>
                               {newCust ? (
@@ -1733,7 +1741,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                           <div className="shrink-0 flex items-center gap-2">
                             <CallIcon className={`w-3.5 h-3.5 ${cc.text}`} />
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{b.status}</span>
-                            <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-500 transition-colors" />
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 transition-colors" />
                           </div>
                         </div>
                       );
@@ -1816,10 +1824,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <div key={label} className="flex-1 w-full">
                 <label className="block text-sm font-bold text-gray-700 mb-2">{label}</label>
                 <input type="date" value={val} onChange={e => set(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-pink-500" />
+                  className="w-full p-2.5 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-pink-300" />
               </div>
             ))}
-            <button onClick={generate} className="w-full sm:w-auto bg-pink-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-pink-700 transition-all flex justify-center items-center gap-2">
+            <button onClick={generate} className="w-full sm:w-auto bg-pink-400 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-pink-500 transition-all flex justify-center items-center gap-2">
               <RefreshCw className="w-4 h-4" /> สร้างรายงาน
             </button>
           </div>
@@ -1827,10 +1835,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         {result && (
           <>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5">
-              <h3 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-pink-600" /> สรุปรวมตามช่วงเวลา</h3>
+              <h3 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-pink-500" /> สรุปรวมตามช่วงเวลา</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                 {[
-                  { label: 'นัดรวมทั้งหมด', val: result.totals.all, from: 'from-pink-50', to: 'to-pink-100', text: 'text-pink-700', small: 'text-pink-600' },
+                  { label: 'นัดรวมทั้งหมด', val: result.totals.all, from: 'from-pink-50', to: 'to-pink-100', text: 'text-pink-600', small: 'text-pink-500' },
                   { label: 'มาแล้ว', val: result.totals.arrived, from: 'from-emerald-50', to: 'to-emerald-100', text: 'text-emerald-700', small: 'text-emerald-600' },
                   { label: 'ยังไม่มา', val: result.totals.upcoming, from: 'from-amber-50', to: 'to-amber-100', text: 'text-amber-700', small: 'text-amber-600' },
                   { label: 'เลื่อนนัด', val: result.totals.rescheduled, from: 'from-indigo-50', to: 'to-indigo-100', text: 'text-indigo-700', small: 'text-indigo-600' },
@@ -1845,8 +1853,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="px-5 py-4 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-gray-100">
-                <h3 className="text-base font-bold text-gray-800 flex items-center gap-2"><UsersRound className="w-5 h-5 text-pink-600" /> ผลการนัดแยกตามผู้นัด</h3>
+              <div className="px-5 py-4 bg-pink-50 border-b border-gray-100">
+                <h3 className="text-base font-bold text-gray-800 flex items-center gap-2"><UsersRound className="w-5 h-5 text-pink-500" /> ผลการนัดแยกตามผู้นัด</h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -1873,12 +1881,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         <tr key={key} className="border-b border-slate-100 hover:bg-pink-50/40 transition-colors">
                           <td className="px-3 py-3 whitespace-nowrap">
                             <button onClick={() => open('ทั้งหมด', s.list_all)}
-                              className="font-bold text-gray-800 text-sm hover:text-pink-600 transition-colors text-left flex items-center gap-1.5 group">
+                              className="font-bold text-gray-800 text-sm hover:text-pink-500 transition-colors text-left flex items-center gap-1.5 group">
                               {s.displayName}
                               <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 shrink-0" />
                             </button>
                           </td>
-                          <td className="px-3 py-3 text-center"><CellBtn count={s.total} colorClass="text-pink-600" list={s.list_all} label="ทั้งหมด" /></td>
+                          <td className="px-3 py-3 text-center"><CellBtn count={s.total} colorClass="text-pink-500" list={s.list_all} label="ทั้งหมด" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.arrived} colorClass="text-emerald-600" list={s.list_arrived} label="มาแล้ว" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.upcoming} colorClass="text-amber-600" list={s.list_upcoming} label="ยังไม่มา" /></td>
                           <td className="px-3 py-3 text-center"><CellBtn count={s.rescheduled} colorClass="text-indigo-600" list={s.list_rescheduled} label="เลื่อนนัด" /></td>
@@ -1898,12 +1906,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         {drillDown && (
           <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
             <div className="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[85vh]">
-              <div className="bg-gradient-to-r from-pink-700 to-rose-600 px-5 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl sm:rounded-t-3xl">
+              <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-5 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl sm:rounded-t-3xl">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-white/20 rounded-xl"><UsersRound className="w-5 h-5" /></div>
                   <div>
                     <h3 className="font-bold text-base leading-tight">{drillDown.bookerName}</h3>
-                    <p className="text-pink-200 text-[11px]">{drillDown.label} · {drillDown.bookings.length} รายการ</p>
+                    <p className="text-pink-100 text-[11px]">{drillDown.label} · {drillDown.bookings.length} รายการ</p>
                   </div>
                 </div>
                 <button onClick={() => setDrillDown(null)} className="p-1.5 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
@@ -1928,8 +1936,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         </div>
                       </div>
                       <div className="shrink-0 text-right">
-                        <p className="text-pink-600 font-bold text-xs">{fmtDateTH(b.bookingDate)}</p>
-                        <p className="text-pink-500 text-[11px]">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                        <p className="text-pink-500 font-bold text-xs">{fmtDateTH(b.bookingDate)}</p>
+                        <p className="text-pink-400 text-[11px]">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
                         <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold ${sc.bg} ${sc.text}`}>{b.status}</span>
                       </div>
                     </div>
@@ -2181,21 +2189,21 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         <input type="file" ref={fileAfterRef} onChange={e => handleImageAdd(e, 'after')} accept="image/*" multiple className="hidden" />
 
         <div className="flex gap-1 bg-pink-50 p-1 rounded-2xl mb-6">
-          <button onClick={() => setActiveSubTab('search')} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'search' ? 'bg-white text-pink-700 shadow-sm' : 'text-pink-400 hover:text-pink-600'}`}>
+          <button onClick={() => setActiveSubTab('search')} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'search' ? 'bg-white text-pink-600 shadow-sm' : 'text-pink-400 hover:text-pink-500'}`}>
             <Search className="w-4 h-4" /> ค้นหาประวัติลูกค้า
           </button>
-          <button onClick={() => { setActiveSubTab('add'); setFormData(EMPTY_RECORD(today)); resetImages(); }} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'add' ? 'bg-white text-pink-700 shadow-sm' : 'text-pink-400 hover:text-pink-600'}`}>
+          <button onClick={() => { setActiveSubTab('add'); setFormData(EMPTY_RECORD(today)); resetImages(); }} className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeSubTab === 'add' ? 'bg-white text-pink-600 shadow-sm' : 'text-pink-400 hover:text-pink-500'}`}>
             <Plus className="w-4 h-4" /> บันทึกประวัติใหม่
           </button>
         </div>
 
         {activeSubTab === 'add' && (
           <div className="bg-white rounded-2xl shadow-xl border border-pink-100 overflow-hidden max-w-md mx-auto">
-            <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center gap-3">
+            <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-6 py-4 flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-xl"><UserPlus className="w-5 h-5 text-white" /></div>
               <div>
                 <h2 className="text-base font-bold text-white">ลงทะเบียนลูกค้าใหม่</h2>
-                <p className="text-pink-200 text-[11px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
+                <p className="text-pink-50 text-[11px]">บันทึกข้อมูลเข้าระบบประวัติลูกค้า</p>
               </div>
             </div>
             <div className="p-6 space-y-4">
@@ -2206,16 +2214,16 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 { name: 'phone', label: 'เบอร์โทรศัพท์', Icon: Phone, req: false, ph: '08X-XXX-XXXX', type: 'tel' },
               ].map(({ name, label, Icon, req, ph, type }) => (
                 <div key={name}>
-                  <label className="block text-sm font-semibold text-pink-900 mb-1.5">{label} {req && <span className="text-red-500">*</span>}</label>
+                  <label className="block text-sm font-semibold text-pink-700 mb-1.5">{label} {req && <span className="text-red-500">*</span>}</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Icon className="h-4 w-4 text-pink-400" /></div>
                     <input type={type || 'text'} name={name} value={formData[name]} onChange={handleInputChange} required={req} placeholder={ph}
-                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" />
                   </div>
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5"><Crown className="w-4 h-4 text-amber-500" /> ประเภทสมาชิก</label>
+                <label className="block text-sm font-semibold text-pink-700 mb-1.5 flex items-center gap-1.5"><Crown className="w-4 h-4 text-amber-500" /> ประเภทสมาชิก</label>
                 <div className="grid grid-cols-1 gap-1.5">
                   {TIER_KEYS.map(key => {
                     const cfg = MEMBERSHIP_TIERS[key];
@@ -2225,7 +2233,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       <button key={key} type="button"
                         onClick={() => setFormData(f => ({ ...f, membershipTier: key }))}
                         className={`flex items-center gap-2 px-3 py-2 rounded-xl border-2 text-left transition-all text-sm font-bold
-                          ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-pink-200'}`}>
+                          ${isSelected ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800` : 'border-slate-100 text-slate-500 hover:border-slate-200'}`}>
                         <IconC className={`w-4 h-4 shrink-0 ${isSelected ? cfg.badgeText : 'text-slate-300'}`} />
                         {cfg.label}
                         {isSelected && <span className="ml-auto text-[10px] text-emerald-600 font-bold">✓ เลือกแล้ว</span>}
@@ -2234,25 +2242,26 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   })}
                 </div>
               </div>
+              {/* ── Reviewer Toggle in register form ── */}
               <button
                 type="button"
                 onClick={() => setFormData(f => ({ ...f, isReviewer: !f.isReviewer }))}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all font-bold text-sm
                   ${formData.isReviewer
-                    ? 'bg-pink-50 border-pink-400 text-pink-700'
+                    ? 'bg-pink-50 border-pink-300 text-pink-600'
                     : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-pink-200'}`}>
                 <div className="flex items-center gap-2.5">
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${formData.isReviewer ? 'bg-pink-500' : 'bg-slate-200'}`}>
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${formData.isReviewer ? 'bg-pink-400' : 'bg-slate-200'}`}>
                     <Star className={`w-4 h-4 ${formData.isReviewer ? 'text-white' : 'text-slate-400'}`} />
                   </div>
                   <div className="text-left">
-                    <p className={`font-bold text-sm ${formData.isReviewer ? 'text-pink-700' : 'text-slate-600'}`}>ลูกค้ารีวิว</p>
-                    <p className={`text-[10px] font-medium ${formData.isReviewer ? 'text-pink-500' : 'text-slate-400'}`}>
+                    <p className={`font-bold text-sm ${formData.isReviewer ? 'text-pink-600' : 'text-slate-600'}`}>ลูกค้ารีวิว</p>
+                    <p className={`text-[10px] font-medium ${formData.isReviewer ? 'text-pink-400' : 'text-slate-400'}`}>
                       {formData.isReviewer ? '✓ เปิดใช้งาน — แสดง badge รีวิว' : 'แตะเพื่อทำเครื่องหมายลูกค้ารีวิว'}
                     </p>
                   </div>
                 </div>
-                <div className={`w-11 h-6 rounded-full transition-all relative ${formData.isReviewer ? 'bg-pink-500' : 'bg-slate-300'}`}>
+                <div className={`w-11 h-6 rounded-full transition-all relative ${formData.isReviewer ? 'bg-pink-400' : 'bg-slate-300'}`}>
                   <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all shadow-sm ${formData.isReviewer ? 'left-6' : 'left-1'}`} />
                 </div>
               </button>
@@ -2283,7 +2292,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                 }}
                 disabled={submitting || !formData.fullName || !formData.hn}
                 className={`w-full py-3 px-4 rounded-xl text-white font-bold shadow-md transition-all flex justify-center items-center gap-2
-                  ${submitting || !formData.fullName || !formData.hn ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                  ${submitting || !formData.fullName || !formData.hn ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 hover:shadow-lg active:scale-[0.98]'}`}>
                 {submitting ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><UserPlus className="w-4 h-4" /> ลงทะเบียน</>}
               </button>
             </div>
@@ -2296,7 +2305,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><Search className="h-5 w-5 text-pink-400" /></div>
                 <input type="text" placeholder="ค้นหาลูกค้าด้วย ชื่อ, เบอร์โทรศัพท์ หรือ รหัส HN..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                  className="pl-12 w-full rounded-xl border border-pink-100 bg-pink-50/50 focus:bg-white focus:border-pink-400 focus:ring-2 focus:ring-pink-200 transition-all px-4 py-3.5 text-slate-700" />
+                  className="pl-12 w-full rounded-xl border border-pink-100 bg-pink-50/50 focus:bg-white focus:border-pink-300 focus:ring-2 focus:ring-pink-200 transition-all px-4 py-3.5 text-slate-700" />
                 {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute inset-y-0 right-0 pr-4 flex items-center text-pink-400 hover:text-pink-600"><X className="h-5 w-5 bg-pink-100 rounded-full p-0.5" /></button>}
               </div>
             </div>
@@ -2305,7 +2314,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <button
                 onClick={() => setTierFilterKey('all')}
                 className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
-                  ${tierFilterKey === 'all' ? 'bg-pink-600 text-white border-pink-600' : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
+                  ${tierFilterKey === 'all' ? 'bg-pink-400 text-white border-pink-400' : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
                 <Users className="w-3.5 h-3.5" /> ทั้งหมด
                 <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${tierFilterKey === 'all' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}`}>{tierCounts.all}</span>
               </button>
@@ -2317,40 +2326,41 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <button key={key}
                     onClick={() => setTierFilterKey(key)}
                     className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
-                      ${isActive ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800 shadow-sm` : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
+                      ${isActive ? `bg-gradient-to-r ${cfg.gradient} ${cfg.badgeBorder} text-slate-800 shadow-sm` : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}>
                     <IconC className={`w-3.5 h-3.5 ${isActive ? cfg.badgeText : 'text-slate-400'}`} />
                     {cfg.label}
                     <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${isActive ? cfg.badgeBg + ' ' + cfg.badgeText : 'bg-slate-100 text-slate-500'}`}>{tierCounts[key] || 0}</span>
                   </button>
                 );
               })}
+              {/* ── Reviewer filter tab ── */}
               <button
                 onClick={() => setTierFilterKey(tierFilterKey === 'reviewer' ? 'all' : 'reviewer')}
                 className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 transition-all
                   ${tierFilterKey === 'reviewer'
-                    ? 'bg-pink-500 text-white border-pink-500 shadow-sm'
+                    ? 'bg-pink-400 text-white border-pink-400 shadow-sm'
                     : 'bg-white text-slate-500 border-slate-200 hover:border-pink-300'}`}>
                 <Star className={`w-3.5 h-3.5 ${tierFilterKey === 'reviewer' ? 'text-white' : 'text-pink-400'}`} />
                 ลูกค้ารีวิว
                 <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold
-                  ${tierFilterKey === 'reviewer' ? 'bg-white/25 text-white' : 'bg-pink-50 text-pink-600'}`}>
+                  ${tierFilterKey === 'reviewer' ? 'bg-white/25 text-white' : 'bg-pink-50 text-pink-500'}`}>
                   {tierCounts.reviewer}
                 </span>
               </button>
             </div>
 
             <div className="mb-5 flex items-center justify-between px-1">
-              <h2 className="text-xl font-bold text-pink-900">
+              <h2 className="text-xl font-bold text-pink-600">
                 {searchQuery ? 'ผลการค้นหา' : tierFilterKey === 'reviewer' ? '⭐ ลูกค้ารีวิว' : 'รายชื่อลูกค้าทั้งหมด'}
               </h2>
-              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${tierFilterKey === 'reviewer' ? 'bg-pink-100 text-pink-700 border-pink-300' : 'bg-pink-100 text-pink-800 border-pink-200'}`}>{filteredPatients.length} ท่าน</span>
+              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${tierFilterKey === 'reviewer' ? 'bg-pink-50 text-pink-600 border-pink-200' : 'bg-pink-50 text-pink-600 border-pink-200'}`}>{filteredPatients.length} ท่าน</span>
             </div>
 
             {filteredPatients.length === 0 ? (
               <div className="bg-white rounded-2xl border border-dashed border-pink-200 p-12 text-center shadow-sm">
                 <div className="bg-pink-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"><User className="w-10 h-10 text-pink-300" /></div>
-                <h3 className="text-lg font-bold text-pink-800 mb-1">{searchQuery ? 'ไม่พบชื่อลูกค้ารายนี้' : 'ยังไม่มีข้อมูลลูกค้า'}</h3>
-                <p className="text-pink-500 text-sm">{searchQuery ? 'ลองเปลี่ยนคำค้นหา' : 'กดแท็บ "+ บันทึกประวัติใหม่" เพื่อเพิ่มข้อมูลลูกค้าคนแรก'}</p>
+                <h3 className="text-lg font-bold text-pink-600 mb-1">{searchQuery ? 'ไม่พบชื่อลูกค้ารายนี้' : 'ยังไม่มีข้อมูลลูกค้า'}</h3>
+                <p className="text-pink-400 text-sm">{searchQuery ? 'ลองเปลี่ยนคำค้นหา' : 'กดแท็บ "+ บันทึกประวัติใหม่" เพื่อเพิ่มข้อมูลลูกค้าคนแรก'}</p>
               </div>
             ) : (
               <div className="space-y-2">
@@ -2367,10 +2377,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                         </div>
                         <div className="flex-grow min-w-0 cursor-pointer" onClick={() => setPatientModalHN(patient.hn)}>
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <h3 className="text-sm font-bold text-slate-800 group-hover:text-pink-700 transition-colors truncate">{patient.fullName}{patient.nickname ? ` (${patient.nickname})` : ''}</h3>
+                            <h3 className="text-sm font-bold text-slate-800 group-hover:text-pink-500 transition-colors truncate">{patient.fullName}{patient.nickname ? ` (${patient.nickname})` : ''}</h3>
                             <MemberBadge tier={patient.membershipTier} size="xs" />
                             {patient.isReviewer && (
-                              <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-700 border border-pink-300">
+                              <span className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-pink-100 text-pink-600 border border-pink-200">
                                 <Star className="w-2.5 h-2.5" /> รีวิว
                               </span>
                             )}
@@ -2401,10 +2411,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                           </button>
                           <button
                             onClick={e => { e.stopPropagation(); setEditPatientHN(patient.hn); setEditPatientForm({ fullName: patient.fullName, nickname: patient.nickname || '', phone: patient.phone || '', isReviewer: !!patient.isReviewer, lineUserId: patient.lineUserId || '' }); }}
-                            className="p-2 text-slate-300 hover:text-pink-600 hover:bg-pink-50 rounded-xl transition-colors shrink-0">
+                            className="p-2 text-slate-300 hover:text-pink-500 hover:bg-pink-50 rounded-xl transition-colors shrink-0">
                             <FileEdit className="w-4 h-4" />
                           </button>
-                          <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-500 transition-colors cursor-pointer" onClick={() => setPatientModalHN(patient.hn)} />
+                          <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-pink-400 transition-colors cursor-pointer" onClick={() => setPatientModalHN(patient.hn)} />
                         </div>
                       </div>
                     </div>
@@ -2415,6 +2425,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           </div>
         )}
 
+        {/* Patient Modal */}
         {patientModalHN && modalPatient && (() => {
           const allSorted = [...modalPatient.records].sort((a, b) => new Date(b.serviceDate) - new Date(a.serviceDate));
           const allBefore = allSorted.flatMap(r => (r.imagesBefore || r.images || []).map(src => ({ src, record: r })));
@@ -2443,8 +2454,8 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
           return (
             <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center" onClick={() => setPatientModalHN(null)}>
-              <div className="bg-[#fffaff] w-full sm:max-w-3xl sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: '92vh' }} onClick={e => e.stopPropagation()}>
-                <div className={`bg-gradient-to-br ${tierCfg.headerGradient.replace('purple','pink').replace('violet','rose')} px-5 pt-5 pb-4 shrink-0`}>
+              <div className="bg-[#fff5f7] w-full sm:max-w-3xl sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: '92vh' }} onClick={e => e.stopPropagation()}>
+                <div className={`bg-gradient-to-br ${tierCfg.headerGradient} px-5 pt-5 pb-4 shrink-0`}>
                   <div className="w-10 h-1 bg-white/30 rounded-full mx-auto mb-4 sm:hidden" />
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
@@ -2458,6 +2469,11 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                           {modalPatient.isReviewer && (
                             <span className="flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-pink-400/30 text-white border border-pink-300/40">
                               <Star className="w-2.5 h-2.5" /> รีวิว
+                            </span>
+                          )}
+                          {modalPatient.lineUserId && (
+                            <span className="flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-400/30 text-white border border-green-300/40">
+                              <MessageCircle className="w-2.5 h-2.5" /> LINE ✓
                             </span>
                           )}
                         </div>
@@ -2476,11 +2492,11 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   </div>
                   <div className="grid grid-cols-3 gap-2 mt-3">
                     <button onClick={() => { resetProc(); setProcForm(f => ({ ...f, serviceDate: today })); setAddProcPatient({ fullName: modalPatient.fullName, hn: modalPatient.hn, phone: modalPatient.phone || '', membershipTier: tier }); setPatientModalHN(null); }}
-                      className="bg-white text-pink-700 hover:bg-pink-50 text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
+                      className="bg-white text-pink-500 hover:bg-pink-50 text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
                       <Plus className="w-4 h-4 mr-2" /> เพิ่มประวัติ
                     </button>
                     <button onClick={() => { onAddBookingForPatient(modalPatient); setPatientModalHN(null); }}
-                      className="bg-pink-500 hover:bg-pink-600 text-white text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
+                      className="bg-pink-400 hover:bg-pink-500 text-white text-sm font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center shadow-sm">
                       <CalendarPlus className="w-4 h-4 mr-2" /> นัดหมายใหม่
                     </button>
                     <button onClick={() => { setMembershipSelectorHN(modalPatient.hn); setPatientModalHN(null); }}
@@ -2520,7 +2536,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                                 <div className="flex items-start justify-between gap-2">
                                   <div className="min-w-0">
                                     <div className="flex items-center gap-1.5 mb-0.5">
-                                      {idx === 0 && <span className="bg-pink-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md shrink-0">ล่าสุด</span>}
+                                      {idx === 0 && <span className="bg-pink-400 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md shrink-0">ล่าสุด</span>}
                                       <span className="text-[11px] text-slate-400 font-medium flex items-center"><Calendar className="w-2.5 h-2.5 mr-0.5 text-pink-300" />{fmt(record.serviceDate)}</span>
                                     </div>
                                     <p className="text-sm font-bold text-slate-800 leading-snug truncate">{record.service}</p>
@@ -2542,7 +2558,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                                   <div className="shrink-0 text-right">
                                     {record.price && <p className="text-sm font-bold text-green-700">{fmtMoney(record.price)}</p>}
                                     <div className="flex items-center justify-end gap-0.5 mt-1">
-                                      <button onClick={() => { openEditModal(record); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-colors"><FileEdit className="w-3.5 h-3.5" /></button>
+                                      <button onClick={() => { openEditModal(record); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-pink-500 hover:bg-pink-50 rounded-lg transition-colors"><FileEdit className="w-3.5 h-3.5" /></button>
                                       <button onClick={() => { setRecordToDelete(record.id); setPatientModalHN(null); }} className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"><Trash2 className="w-3.5 h-3.5" /></button>
                                     </div>
                                   </div>
@@ -2560,6 +2576,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           );
         })()}
 
+        {/* Membership Selector Modal */}
         {membershipSelectorHN && (() => {
           const patient = groupedMap.get(membershipSelectorHN);
           if (!patient) return null;
@@ -2576,11 +2593,12 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           );
         })()}
 
+        {/* Edit Record Modal */}
         {editingRecord && (
-          <div className="fixed inset-0 bg-pink-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-10">
+          <div className="fixed inset-0 bg-pink-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-10">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-              <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-2xl">
-                <h2 className="text-lg font-bold flex items-center"><FileEdit className="w-5 h-5 mr-2 text-pink-200" /> แก้ไขประวัติหัตถการ</h2>
+              <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-2xl">
+                <h2 className="text-lg font-bold flex items-center"><FileEdit className="w-5 h-5 mr-2 text-pink-100" /> แก้ไขประวัติหัตถการ</h2>
                 <button onClick={() => { setEditingRecord(null); setFormData(EMPTY_RECORD(today)); resetImages(); }} className="p-1 hover:bg-white/20 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               </div>
               <div className="overflow-y-auto p-6 flex-grow">
@@ -2595,13 +2613,13 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       <div key={name}>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">{label} {req && <span className="text-red-500">*</span>}</label>
                         <input type={type} name={name} value={formData[name]} onChange={handleInputChange} required={req} min={type === 'number' ? '0' : undefined}
-                          className="w-full rounded-lg border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50" />
+                          className="w-full rounded-lg border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50" />
                       </div>
                     ))}
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">หมายเหตุเพิ่มเติม</label>
                       <textarea name="note" value={formData.note} onChange={handleInputChange} rows="2"
-                        className="w-full rounded-lg border border-slate-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50 resize-none" />
+                        className="w-full rounded-lg border border-slate-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 bg-gray-50/50 resize-none" />
                     </div>
                   </div>
                   <StaffFields theme="pink" formData={formData} handleInputChange={handleInputChange} />
@@ -2617,7 +2635,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
               <div className="border-t border-slate-100 p-4 bg-gray-50 flex justify-end gap-3 shrink-0 rounded-b-2xl">
                 <button type="button" onClick={() => { setEditingRecord(null); setFormData(EMPTY_RECORD(today)); resetImages(); }} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
                 <button type="submit" form="editRecordForm" disabled={submitting || !formData.service || !formData.serviceDate || staffRequired}
-                  className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center ${submitting || !formData.service || !formData.serviceDate || staffRequired ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                  className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center ${submitting || !formData.service || !formData.serviceDate || staffRequired ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 hover:shadow-lg active:scale-[0.98]'}`}>
                   {submitting ? <><Sparkles className="animate-spin w-5 h-5 mr-2" /> กำลังบันทึก...</> : 'บันทึกการแก้ไข'}
                 </button>
               </div>
@@ -2625,19 +2643,20 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           </div>
         )}
 
+        {/* Add Procedure Modal */}
         {addProcPatient && (
           <>
             <input type="file" ref={procBeforeRef} onChange={e => handleProcImageAdd(e,'before')} accept="image/*" multiple className="hidden" />
             <input type="file" ref={procAfterRef}  onChange={e => handleProcImageAdd(e,'after')}  accept="image/*" multiple className="hidden" />
-            <div className="fixed inset-0 bg-pink-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <div className="fixed inset-0 bg-pink-900/40 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
               <div className="bg-white w-full sm:max-w-2xl rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92vh]">
-                <div className="bg-gradient-to-r from-pink-700 to-rose-500 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
+                <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-6 py-4 flex items-center justify-between text-white shrink-0 rounded-t-3xl">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-white/20 rounded-xl"><FileEdit className="w-5 h-5" /></div>
                     <div>
                       <h2 className="text-base font-bold leading-tight">เพิ่มประวัติหัตถการ</h2>
                       <div className="flex items-center gap-2">
-                        <p className="text-pink-200 text-[11px]">{addProcPatient.fullName} · {addProcPatient.hn}</p>
+                        <p className="text-pink-50 text-[11px]">{addProcPatient.fullName} · {addProcPatient.hn}</p>
                         <MemberBadge tier={addProcPatient.membershipTier} size="xs" />
                       </div>
                     </div>
@@ -2651,25 +2670,25 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">วันที่ <span className="text-red-500">*</span></label>
                         <input type="date" value={procForm.serviceDate} onChange={e => setProcForm(f => ({ ...f, serviceDate: e.target.value }))} required
-                          className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" />
+                          className="w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" />
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-1">ยอดชำระ (บาท)</label>
                         <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><DollarSign className="h-4 w-4 text-pink-400" /></div>
                           <input type="number" value={procForm.price} onChange={e => setProcForm(f => ({ ...f, price: e.target.value }))} min="0" placeholder="ไม่ระบุ"
-                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
+                            className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">รายการหัตถการ <span className="text-red-500">*</span></label>
                       <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><FileText className="h-4 w-4 text-pink-400" /></div>
                         <input type="text" value={procForm.service} onChange={e => setProcForm(f => ({ ...f, service: e.target.value }))} required placeholder="เช่น ฉีดโบท็อกซ์กราม"
-                          className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
+                          className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700" /></div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-1">หมายเหตุ</label>
                       <textarea value={procForm.note} onChange={e => setProcForm(f => ({ ...f, note: e.target.value }))} rows="2" placeholder="หมายเหตุเพิ่มเติม"
-                        className="w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 resize-none" />
+                        className="w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2 text-sm text-slate-700 resize-none" />
                     </div>
                   </div>
                   <StaffFields theme="pink" formData={procStaff} handleInputChange={e => setProcStaff(s => ({ ...s, [e.target.name]: e.target.value }))} />
@@ -2689,7 +2708,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <button type="button" onClick={() => { setAddProcPatient(null); resetProc(); }} className="px-5 py-2.5 rounded-xl text-slate-600 font-bold hover:bg-slate-200 transition-colors">ยกเลิก</button>
                   <button onClick={handleProcSubmit} disabled={procSubmitting || !procForm.service || !procForm.serviceDate}
                     className={`px-6 py-2.5 rounded-xl text-white font-bold shadow-md transition-all flex items-center gap-2
-                      ${procSubmitting || !procForm.service || !procForm.serviceDate ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:shadow-lg active:scale-[0.98]'}`}>
+                      ${procSubmitting || !procForm.service || !procForm.serviceDate ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 hover:shadow-lg active:scale-[0.98]'}`}>
                     {procSubmitting ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึกประวัติ</>}
                   </button>
                 </div>
@@ -2698,10 +2717,11 @@ const APP_ID = 'bornsong-clinic-db-893e7';
           </>
         )}
 
+        {/* Edit Patient Info Modal */}
         {editPatientHN && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
-            <div className="bg-white w-full max-sm rounded-3xl shadow-2xl overflow-hidden">
-              <div className="bg-gradient-to-r from-pink-700 to-pink-500 px-5 py-4 flex items-center justify-between text-white">
+            <div className="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden">
+              <div className="bg-gradient-to-r from-pink-400 to-pink-300 px-5 py-4 flex items-center justify-between text-white">
                 <div className="flex items-center gap-2.5">
                   <div className="p-2 bg-white/20 rounded-xl"><FileEdit className="w-4 h-4" /></div>
                   <h3 className="font-bold text-base">แก้ไขข้อมูลลูกค้า</h3>
@@ -2714,7 +2734,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                   <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-4 w-4 text-pink-400" /></div>
                     <input autoFocus type="text" value={editPatientForm.fullName}
                       onChange={e => setEditPatientForm(f => ({ ...f, fullName: e.target.value }))}
-                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5">ชื่อเล่น</label>
@@ -2722,7 +2742,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     <input type="text" value={editPatientForm.nickname || ''}
                       onChange={e => setEditPatientForm(f => ({ ...f, nickname: e.target.value }))}
                       placeholder="เช่น นุ่น, มิ้น, แป้ง"
-                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5">เบอร์โทรศัพท์</label>
@@ -2730,12 +2750,15 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                     <input type="tel" value={editPatientForm.phone}
                       onChange={e => setEditPatientForm(f => ({ ...f, phone: e.target.value }))}
                       placeholder="08X-XXX-XXXX"
-                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-500 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
+                      className="pl-10 w-full rounded-xl border border-pink-200 focus:border-pink-400 focus:ring focus:ring-pink-200 px-3 py-2.5 text-sm text-slate-700" /></div>
                 </div>
+
+                {/* ── LINE User ID ── */}
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1.5 flex items-center gap-1.5">
                     <MessageCircle className="w-3.5 h-3.5 text-green-500" />
                     LINE User ID
+                    <span className="text-[10px] font-normal text-slate-400">(สำหรับส่งแจ้งเตือนอัตโนมัติ)</span>
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -2749,32 +2772,43 @@ const APP_ID = 'bornsong-clinic-db-893e7';
                       className="pl-10 w-full rounded-xl border border-green-200 focus:border-green-500 focus:ring focus:ring-green-200 px-3 py-2.5 text-sm text-slate-700 font-mono"
                     />
                   </div>
+                  {editPatientForm.lineUserId && (
+                    <p className="mt-1 text-[11px] text-green-600 font-medium flex items-center gap-1">
+                      ✓ พร้อมรับการแจ้งเตือนผ่าน LINE
+                    </p>
+                  )}
                 </div>
+
+                {/* ── Reviewer Toggle ── */}
                 <button
                   type="button"
                   onClick={() => setEditPatientForm(f => ({ ...f, isReviewer: !f.isReviewer }))}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all font-bold text-sm
                     ${editPatientForm.isReviewer
-                      ? 'bg-pink-50 border-pink-400 text-pink-700'
+                      ? 'bg-pink-50 border-pink-300 text-pink-600'
                       : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-pink-200'}`}>
                   <div className="flex items-center gap-2.5">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${editPatientForm.isReviewer ? 'bg-pink-500' : 'bg-slate-200'}`}>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${editPatientForm.isReviewer ? 'bg-pink-400' : 'bg-slate-200'}`}>
                       <Star className={`w-4 h-4 ${editPatientForm.isReviewer ? 'text-white' : 'text-slate-400'}`} />
                     </div>
                     <div className="text-left">
-                      <p className={`font-bold text-sm ${editPatientForm.isReviewer ? 'text-pink-700' : 'text-slate-600'}`}>ลูกค้ารีวิว</p>
+                      <p className={`font-bold text-sm ${editPatientForm.isReviewer ? 'text-pink-600' : 'text-slate-600'}`}>ลูกค้ารีวิว</p>
+                      <p className={`text-[10px] font-medium ${editPatientForm.isReviewer ? 'text-pink-400' : 'text-slate-400'}`}>
+                        {editPatientForm.isReviewer ? '✓ เปิดใช้งาน — แสดง badge รีวิว' : 'แตะเพื่อเปิดใช้งาน'}
+                      </p>
                     </div>
                   </div>
-                  <div className={`w-11 h-6 rounded-full transition-all relative ${editPatientForm.isReviewer ? 'bg-pink-500' : 'bg-slate-300'}`}>
+                  <div className={`w-11 h-6 rounded-full transition-all relative ${editPatientForm.isReviewer ? 'bg-pink-400' : 'bg-slate-300'}`}>
                     <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all shadow-sm ${editPatientForm.isReviewer ? 'left-6' : 'left-1'}`} />
                   </div>
                 </button>
+                <p className="text-[11px] text-slate-400">การแก้ไขจะอัปเดตทุก record ของ HN นี้</p>
               </div>
               <div className="px-5 pb-5 flex gap-3">
                 <button onClick={() => setEditPatientHN(null)} className="flex-1 py-2.5 rounded-xl text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 transition-colors text-sm">ยกเลิก</button>
                 <button onClick={saveEditPatient} disabled={editPatientSaving || !editPatientForm.fullName}
                   className={`flex-1 py-2.5 rounded-xl text-white font-bold transition-all text-sm flex items-center justify-center gap-2 shadow-md
-                    ${editPatientSaving || !editPatientForm.fullName ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 active:scale-[0.98]'}`}>
+                    ${editPatientSaving || !editPatientForm.fullName ? 'bg-pink-200 cursor-not-allowed' : 'bg-gradient-to-r from-pink-400 to-pink-300 hover:from-pink-500 active:scale-[0.98]'}`}>
                   {editPatientSaving ? <><Sparkles className="animate-spin w-4 h-4" /> กำลังบันทึก...</> : <><Save className="w-4 h-4" /> บันทึก</>}
                 </button>
               </div>
@@ -2795,6 +2829,40 @@ const APP_ID = 'bornsong-clinic-db-893e7';
             </div>
           </div>
         )}
+
+        {alertMessage && (
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
+              <div className="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2">แจ้งเตือนจากระบบ</h3>
+              <p className="text-slate-600 text-sm mb-6 whitespace-pre-line">{alertMessage}</p>
+              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-pink-400 hover:bg-pink-500 transition-colors shadow-md">ตกลงเข้าใจแล้ว</button>
+            </div>
+          </div>
+        )}
+
+        {lightbox && (() => {
+          const { images, index } = lightbox;
+          const total = images.length;
+          return (
+            <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center"
+              onClick={() => setLightbox(null)}
+              onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={e => {
+                if (touchStartX.current === null) return;
+                const diff = touchStartX.current - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) { diff > 0 ? setLightbox(lb => ({ ...lb, index: (lb.index + 1) % total })) : setLightbox(lb => ({ ...lb, index: (lb.index - 1 + total) % total })); }
+                touchStartX.current = null;
+              }}>
+              <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 z-10"><X className="w-7 h-7" /></button>
+              {total > 1 && <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-bold px-3 py-1.5 rounded-full z-10">{index + 1} / {total}</div>}
+              {total > 1 && <button onClick={e => { e.stopPropagation(); setLightbox(lb => ({ ...lb, index: (lb.index - 1 + total) % total })); }} className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white rounded-full p-2.5 z-10 backdrop-blur-sm"><ChevronLeft className="w-6 h-6" /></button>}
+              <img key={index} src={images[index]} alt="" className="max-w-[85vw] max-h-[85vh] object-contain rounded-lg shadow-2xl select-none" style={{ animation: 'fadeIn 0.18s ease' }} onClick={e => e.stopPropagation()} draggable={false} />
+              {total > 1 && <button onClick={e => { e.stopPropagation(); setLightbox(lb => ({ ...lb, index: (lb.index + 1) % total })); }} className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white rounded-full p-2.5 z-10 backdrop-blur-sm"><ChevronRight className="w-6 h-6" /></button>}
+              <style>{`@keyframes fadeIn { from { opacity: 0.4; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }`}</style>
+            </div>
+          );
+        })()}
       </div>
     );
   };
@@ -2849,6 +2917,7 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         loaded.bookings = true;
         checkDone();
       }, err => {
+        console.error("Bookings error:", err);
         loaded.bookings = true;
         checkDone();
       });
@@ -2883,42 +2952,42 @@ const APP_ID = 'bornsong-clinic-db-893e7';
 
     if (loading) return (
       <div className="min-h-screen bg-pink-50 flex items-center justify-center">
-        <div className="text-pink-600 flex flex-col items-center">
-          <Sparkles className="w-10 h-10 mb-4 text-pink-500 animate-spin" />
+        <div className="text-pink-400 flex flex-col items-center">
+          <Sparkles className="w-10 h-10 mb-4 text-pink-400 animate-spin" />
           <p className="text-lg font-medium">กำลังโหลดระบบ Bornsong Clinic...</p>
         </div>
       </div>
     );
 
     return (
-      <div className="min-h-screen bg-[#FFF0F5] text-slate-800 font-sans pb-16">
+      <div className="min-h-screen bg-[#FFF5F7] text-slate-800 font-sans pb-16">
         {isOffline && (
           <div className="bg-red-500 text-white text-sm font-bold px-4 py-2 text-center">
             ⚠️ ข้อมูลไม่ได้ถูกจัดเก็บในฐานข้อมูลจริง (Offline Mode)
           </div>
         )}
 
-        <header className="bg-gradient-to-r from-pink-900 via-pink-700 to-rose-600 text-white shadow-lg sticky top-0 z-20">
+        <header className="bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 text-white shadow-md sticky top-0 z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="bg-white p-2 rounded-full shadow-md"><Database className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" /></div>
+                <div className="bg-white p-2 rounded-full shadow-sm"><Database className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" /></div>
                 <div>
-                  <h1 className="text-lg sm:text-2xl font-bold tracking-tight">Bornsong Clinic</h1>
-                  <p className="text-pink-200 text-[10px] sm:text-sm font-medium">ระบบจัดการประวัติ · นัดหมาย · ติดตาม</p>
+                  <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-white drop-shadow-sm">Bornsong Clinic</h1>
+                  <p className="text-pink-50 text-[10px] sm:text-sm font-medium">ระบบจัดการประวัติ · นัดหมาย · ติดตาม</p>
                 </div>
               </div>
-              <div className={`hidden md:flex items-center px-3 py-1.5 rounded-full text-xs font-bold border ${isOffline ? 'bg-red-500/20 text-red-100 border-red-400/30' : 'bg-green-500/20 text-green-100 border-green-400/30'}`}>
+              <div className={`hidden md:flex items-center px-3 py-1.5 rounded-full text-xs font-bold border shadow-sm ${isOffline ? 'bg-red-500/80 text-white border-red-400/30' : 'bg-white/20 text-white border-white/40'}`}>
                 {isOffline ? <WifiOff className="w-3.5 h-3.5 mr-1.5" /> : <Wifi className="w-3.5 h-3.5 mr-1.5" />}
                 {dbStatus}
               </div>
             </div>
           </div>
-          <div className="bg-black/20 border-t border-white/10">
+          <div className="bg-black/5 border-t border-white/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto">
               {TABS.map(({ id, label, Icon }) => (
                 <button key={id} onClick={() => setActiveTab(id)}
-                  className={`py-3 px-4 sm:px-6 font-semibold text-sm transition-colors border-b-2 whitespace-nowrap flex items-center gap-2 ${activeTab === id ? 'border-white text-white bg-white/10' : 'border-transparent text-pink-200 hover:text-white hover:bg-white/10'}`}>
+                  className={`py-3 px-4 sm:px-6 font-bold text-sm transition-colors border-b-[3px] whitespace-nowrap flex items-center gap-2 ${activeTab === id ? 'border-white text-white bg-white/20' : 'border-transparent text-pink-50 hover:text-white hover:bg-white/10'}`}>
                   <Icon className="w-4 h-4" /> {label}
                 </button>
               ))}
@@ -2941,10 +3010,10 @@ const APP_ID = 'bornsong-clinic-db-893e7';
         {alertMessage && (
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
-              <div className="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
+              <div className="w-16 h-16 bg-pink-100 text-pink-400 rounded-full flex items-center justify-center mx-auto mb-4"><Sparkles className="w-8 h-8" /></div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">แจ้งเตือน</h3>
               <p className="text-slate-600 text-sm mb-6 whitespace-pre-line">{alertMessage}</p>
-              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-pink-600 hover:bg-pink-700 transition-colors">ตกลง</button>
+              <button onClick={() => setAlertMessage('')} className="w-full py-2.5 rounded-xl font-bold text-white bg-pink-400 hover:bg-pink-500 transition-colors">ตกลง</button>
             </div>
           </div>
         )}
