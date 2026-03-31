@@ -2999,9 +2999,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       setError('');
       
       // ตรวจสอบ Username และ Password ตามที่กำหนด
-      if (username === 'bs' && password === '1234') {
+      if (username === 'Bsk' && password === '1234') {
         setTimeout(() => {
-          onLogin({ username: 'BS00', role: 'Front' });
+          onLogin({ username: 'Bsk', role: 'Front' });
           setLoading(false);
         }, 800);
       } else {
