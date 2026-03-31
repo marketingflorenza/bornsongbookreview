@@ -1183,21 +1183,21 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[80] flex items-center justify-center p-4">
         <div className="bg-[#FFF8F9] w-full max-w-md rounded-[32px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
           {/* Header */}
-          <div className="bg-gradient-to-r from-rose-500 to-orange-400 p-6 text-white relative">
+          <div className="bg-gradient-to-br from-pink-500 via-pink-400 to-rose-400 p-6 text-white relative">
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md">
                   <Bell className="w-6 h-6 text-white" />
                 </div>
                 {bookings.length > 0 && (
-                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-rose-600 text-[10px] font-black px-1.5 py-0.5 rounded-full border-2 border-rose-500">
+                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-pink-600 text-[10px] font-black px-1.5 py-0.5 rounded-full border-2 border-pink-500">
                     {bookings.length > 99 ? '99+' : bookings.length}
                   </div>
                 )}
               </div>
               <div>
                 <h3 className="text-xl font-black tracking-tight">รายชื่อต้องโทรติดตาม</h3>
-                <p className="text-rose-100 text-xs font-bold">{bookings.length} รายการที่ต้องดำเนินการ</p>
+                <p className="text-pink-50 text-xs font-bold">{bookings.length} รายการที่ต้องดำเนินการ</p>
               </div>
             </div>
             <button onClick={onClose} className="absolute top-6 right-6 p-1 hover:bg-white/20 rounded-full transition-colors">
@@ -3001,7 +3001,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
       // ตรวจสอบ Username และ Password ตามที่กำหนด
       if (username === 'Bsk' && password === '1234') {
         setTimeout(() => {
-          onLogin({ username: 'Bsk', role: 'Front' });
+          onLogin({ username: 'Bsk', role: 'front' });
           setLoading(false);
         }, 800);
       } else {
