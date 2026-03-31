@@ -25,6 +25,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     storageBucket: "bornsong-clinic-db-893e7.firebasestorage.app",
     messagingSenderId: "840582556242",
     appId: "1:840582556242:web:de331510c1417d47548d8b",
+    measurementId: "G-33L7CNFZ1G"
   };
   const APP_ID = 'bornsong-clinic-db';
   let app, auth, db;
@@ -111,6 +112,21 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
   const TIER_KEYS = Object.keys(MEMBERSHIP_TIERS);
   const DEFAULT_TIER = 'ลูกค้าปกติ';
+
+  const STATUS_CONFIG = {
+    'ยังไม่มา':     { bg: 'bg-blue-100',   text: 'text-blue-700',   dot: 'bg-blue-500',   border: 'border-blue-300' },
+    'มาแล้ว':      { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
+    'เลื่อนนัด':   { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
+    'ไม่มาตามนัด': { bg: 'bg-rose-100',   text: 'text-rose-700',   dot: 'bg-rose-500',    border: 'border-rose-300' },
+    'ยกเลิกนัด':   { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',     border: 'border-red-400' },
+  };
+
+  const CALL_CONFIG = {
+    'ยังไม่โทรคอนเฟิม':   { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', icon: PhoneMissed },
+    'คอนเฟิมนัดแล้ว':    { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
+    'คอนเฟิมลูกค้าที่จะมาตามนัด': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: PhoneCall },
+    'ไม่รับสายรอโทรใหม่': { bg: 'bg-amber-50',  text: 'text-amber-700',  border: 'border-amber-400',  icon: PhoneOff },
+  };
 
   // ─── Membership Badge Component ────────────────────────────────────────────────
   const MemberBadge = ({ tier, size = 'sm' }) => {
@@ -239,22 +255,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   const MONTH_TH = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
   const DAY_TH_SHORT = ['อา','จ','อ','พ','พฤ','ศ','ส'];
 
-  // หมายเหตุ: สีของสถานะยังคงเดิมเพื่อไม่ให้กระทบต่อการใช้งานและความเข้าใจของระบบ
-  const STATUS_CONFIG = {
-    'ยังไม่มา':     { bg: 'bg-blue-100',   text: 'text-blue-700',   dot: 'bg-blue-500',   border: 'border-blue-300' },
-    'มาแล้ว':      { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500', border: 'border-emerald-300' },
-    'เลื่อนนัด':   { bg: 'bg-indigo-100', text: 'text-indigo-700', dot: 'bg-indigo-500',  border: 'border-indigo-300' },
-    'ไม่มาตามนัด': { bg: 'bg-rose-100',   text: 'text-rose-700',   dot: 'bg-rose-500',    border: 'border-rose-300' },
-    'ยกเลิกนัด':   { bg: 'bg-red-200',    text: 'text-red-800',    dot: 'bg-red-700',     border: 'border-red-400' },
-  };
-
-  const CALL_CONFIG = {
-    'ยังไม่โทรคอนเฟิม':   { bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', icon: PhoneMissed },
-    'คอนเฟิมนัดแล้ว':    { bg: 'bg-emerald-50',text: 'text-emerald-700',border: 'border-emerald-400',icon: PhoneIncoming },
-    'คอนเฟิมลูกค้าที่จะมาตามนัด': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: PhoneCall },
-    'ไม่รับสายรอโทรใหม่': { bg: 'bg-amber-50',  text: 'text-amber-700',  border: 'border-amber-400',  icon: PhoneOff },
-  };
-
   // ─── ✅ DUPLICATE CHECK HELPER (shared across components) ────────────────────
   const findDuplicateBookings = (allBookings, { hn, name, phone, date, excludeId }) => {
     if (!date) return [];
@@ -308,6 +308,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
   const isNewCustomer = (booking, patients) => {
     if (!booking.hn || booking.hn.trim() === '') return true;
     return !patients.some(p => String(p.hn).toLowerCase() === String(booking.hn).toLowerCase());
+  };
+
+  const needsFollowUp = (booking) => {
+    const today = todayStr();
+    const isPast = booking.bookingDate < today;
+    const isNotArrived = booking.status === 'ยังไม่มา';
+    const isNoShow = booking.status === 'ไม่มาตามนัด';
+    return (isPast && isNotArrived) || isNoShow;
   };
 
   // ─── Sub-components ──────────────────────────────────────────────────────────
@@ -1151,6 +1159,117 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ─── FollowUp Modal (Bell Notification) ──────────────────────────────────────────
+  const FollowUpModal = ({ bookings, onClose, onSelectBooking, records }) => {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const getDaysAgo = (dateStr) => {
+      const d = new Date(dateStr);
+      d.setHours(0,0,0,0);
+      const diff = today.getTime() - d.getTime();
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    };
+
+    const pendingList = [...bookings].sort((a, b) => a.bookingDate.localeCompare(b.bookingDate) || (a.bookingTime || '').localeCompare(b.bookingTime || ''));
+
+    return (
+      <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[80] flex items-center justify-center p-4">
+        <div className="bg-[#FFF8F9] w-full max-w-md rounded-[32px] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-rose-500 to-orange-400 p-6 text-white relative">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md">
+                  <Bell className="w-6 h-6 text-white" />
+                </div>
+                {bookings.length > 0 && (
+                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-rose-600 text-[10px] font-black px-1.5 py-0.5 rounded-full border-2 border-rose-500">
+                    {bookings.length > 99 ? '99+' : bookings.length}
+                  </div>
+                )}
+              </div>
+              <div>
+                <h3 className="text-xl font-black tracking-tight">รายชื่อต้องโทรติดตาม</h3>
+                <p className="text-rose-100 text-xs font-bold">{bookings.length} รายการที่ต้องดำเนินการ</p>
+              </div>
+            </div>
+            <button onClick={onClose} className="absolute top-6 right-6 p-1 hover:bg-white/20 rounded-full transition-colors">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-4 space-y-4">
+              {/* Section Header */}
+              <div className="flex items-center justify-between bg-yellow-50 px-4 py-2 rounded-xl border border-yellow-100">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-yellow-600" />
+                  <span className="text-sm font-bold text-yellow-800">ยังไม่มา (เลยกำหนด)</span>
+                </div>
+                <span className="bg-yellow-400 text-white text-[11px] font-black px-2 py-0.5 rounded-full shadow-sm">{bookings.length}</span>
+              </div>
+
+              {/* List */}
+              <div className="space-y-3">
+                {pendingList.length === 0 ? (
+                  <div className="py-12 text-center">
+                    <div className="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle className="w-8 h-8 text-rose-200" />
+                    </div>
+                    <p className="text-slate-400 font-bold text-sm">ไม่มีรายการค้างจัดการ</p>
+                  </div>
+                ) : pendingList.map(b => {
+                  const daysAgo = getDaysAgo(b.bookingDate);
+                  const tier = b.hn ? getPatientTier(records, b.hn) : DEFAULT_TIER;
+                  return (
+                    <div key={b.id} onClick={() => { onSelectBooking(b); }}
+                      className="bg-white p-4 rounded-2xl border-b-2 border-slate-100 hover:border-rose-200 hover:shadow-md transition-all cursor-pointer group relative">
+                      <div className="flex justify-between items-start gap-3">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          <div className="mt-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                              <p className="font-black text-slate-800 text-base truncate">{b.customerName}</p>
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600 border border-blue-100">ยังไม่มา</span>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-bold text-slate-400">
+                              <span className="flex items-center text-blue-500"><Hash className="w-3 h-3 mr-0.5" />{b.hn || 'ไม่มี HN'}</span>
+                              <a href={`tel:${b.phoneNumber}`} onClick={e => e.stopPropagation()} className="flex items-center text-emerald-500 hover:underline">
+                                <Phone className="w-3 h-3 mr-0.5" />{b.phoneNumber || 'ไม่มีเบอร์'}
+                              </a>
+                              <span className="truncate">· {b.procedure || '-'}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <p className="text-slate-800 font-black text-sm">{fmtDateTH(b.bookingDate)}</p>
+                          <p className="text-blue-500 font-black text-sm">{b.bookingTime ? `${b.bookingTime} น.` : '-'}</p>
+                          {daysAgo > 0 && (
+                            <p className="text-rose-500 font-black text-[11px] mt-0.5">{daysAgo} วันที่แล้ว</p>
+                          )}
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-rose-400 mt-1 transition-colors" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Hint */}
+          <div className="p-4 bg-slate-50 border-t border-slate-100 text-center">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              แตะที่รายชื่อเพื่อดูรายละเอียดนัดหมาย · แตะเบอร์โทรเพื่อโทรออก
+            </p>
           </div>
         </div>
       </div>
@@ -2867,8 +2986,130 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     );
   };
 
+  // ─── Login View Component ────────────────────────────────────────────────────
+  const LoginView = ({ onLogin }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = (e) => {
+      e.preventDefault();
+      setLoading(true);
+      setError('');
+      
+      // ตรวจสอบ Username และ Password ตามที่กำหนด
+      if (username === 'bs' && password === '1234') {
+        setTimeout(() => {
+          onLogin({ username: 'BS00', role: 'Front' });
+          setLoading(false);
+        }, 800);
+      } else {
+        setTimeout(() => {
+          setError('Username หรือ Password ไม่ถูกต้อง กรุณาลองใหม่');
+          setLoading(false);
+        }, 500);
+      }
+    };
+
+    return (
+      <div className="min-h-screen bg-[#FFF5F7] flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-white rounded-[40px] shadow-2xl overflow-hidden border-4 border-pink-100">
+          <div className="bg-gradient-to-br from-pink-500 to-pink-400 p-10 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12 blur-xl" />
+            
+            <div className="relative inline-block mb-4">
+              <div className="w-20 h-20 bg-white rounded-3xl shadow-lg flex items-center justify-center mx-auto">
+                <Database className="w-10 h-10 text-pink-500" />
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-yellow-400 rounded-2xl flex items-center justify-center shadow-md border-2 border-white">
+                <Shield className="w-4 h-4 text-white" />
+              </div>
+            </div>
+            
+            <h2 className="text-3xl font-black text-white tracking-tight">Bornsong Clinic</h2>
+            <p className="text-pink-100 text-sm font-bold mt-1">ยินดีต้อนรับเข้าสู่ระบบจัดการคลินิก</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="p-8 sm:p-10 space-y-6">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Username</label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <User className="w-5 h-5 text-pink-300 group-focus-within:text-pink-500 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="กรอกชื่อผู้ใช้งาน"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-pink-300 focus:bg-white transition-all font-bold text-slate-700"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Password</label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Shield className="w-5 h-5 text-pink-300 group-focus-within:text-pink-500 transition-colors" />
+                  </div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="กรอกรหัสผ่าน"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-pink-300 focus:bg-white transition-all font-bold text-slate-700"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {error && (
+              <div className="bg-rose-50 border-2 border-rose-100 text-rose-500 p-4 rounded-2xl text-xs font-bold flex items-center gap-3 animate-shake">
+                <AlertTriangle className="w-5 h-5 shrink-0" />
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-4 rounded-2xl text-white font-black text-lg shadow-xl shadow-pink-200 transition-all active:scale-95 flex items-center justify-center gap-3
+                ${loading ? 'bg-pink-300 cursor-not-allowed' : 'bg-gradient-to-r from-pink-500 to-pink-400 hover:from-pink-600 hover:to-pink-500'}`}
+            >
+              {loading ? (
+                <><RefreshCw className="w-6 h-6 animate-spin" /> กำลังเข้าสู่ระบบ...</>
+              ) : (
+                <>เข้าสู่ระบบ <ChevronRight className="w-6 h-6" /></>
+              )}
+            </button>
+          </form>
+
+          <div className="px-10 pb-8 text-center">
+            <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Bornsong Clinic Management System v2.0</p>
+          </div>
+        </div>
+        <style>{`
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+          }
+          .animate-shake { animation: shake 0.3s ease-in-out; }
+        `}</style>
+      </div>
+    );
+  };
+
   // ─── Main App ─────────────────────────────────────────────────────────────────
   export default function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [authData, setAuthData] = useState(null);
     const [user, setUser] = useState(null);
     const [records, setRecords] = useState([]);
     const [bookings, setBookings] = useState([]);
@@ -2878,6 +3119,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     const [activeTab, setActiveTab] = useState('dashboard');
     const [alertMessage, setAlertMessage] = useState('');
     const [pendingBooking, setPendingBooking] = useState(null);
+    const [notificationCount, setNotificationCount] = useState(0);
+    const [pendingCallbacks, setPendingCallbacks] = useState([]);
+    const [showFollowUp, setShowFollowUp] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
 
     useEffect(() => {
       if (!auth) { setLoading(false); return; }
@@ -2908,12 +3153,14 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         setDbStatus(err.code === 'permission-denied' ? 'ติดสิทธิ์การเข้าถึง' : 'ทำงานแบบออฟไลน์');
         loaded.records = true;
         checkDone();
+        console.log("[Records] Connected:", data.length, "records");
       });
 
       const unsubBookings = onSnapshot(BOOKINGS_PATH(), snap => {
         const data = snap.docs.map(d => ({ id: d.id, ...d.data() }));
         data.sort((a, b) => (b.bookingDate + b.bookingTime).localeCompare(a.bookingDate + a.bookingTime));
         setBookings(data);
+        console.log("[Bookings] Connected:", data.length, "bookings");
         loaded.bookings = true;
         checkDone();
       }, err => {
@@ -2939,6 +3186,30 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
     });
     const patients = Array.from(patientMap.values());
 
+    useEffect(() => {
+      const today = todayStr();
+      const pending = bookings.filter(b => {
+        // 1. นัดหมายวันนี้ที่ยังไม่มา หรือ ไม่มาตามนัด
+        const isTodayPending = b.bookingDate === today && (b.status === 'ยังไม่มา' || b.status === 'ไม่มาตามนัด');
+        
+        // 2. นัดหมายในอดีต (Past Due) ที่ยังค้างสถานะ "ยังไม่มา" หรือ "ไม่มาตามนัด"
+        const isPastPending = b.bookingDate < today && (b.status === 'ยังไม่มา' || b.status === 'ไม่มาตามนัด');
+        
+        // 3. กรองเฉพาะคนที่ยังไม่ได้โทรจัดการ (callStatus ไม่ใช่ 'คอนเฟิมลูกค้าที่จะมาตามนัด')
+        // หมายเหตุ: รายชื่อจะหายไปจากกระดิ่งเมื่อมีการอัปเดต callStatus เป็น 'คอนเฟิมลูกค้าที่จะมาตามนัด' หรือ เปลี่ยนสถานะ status เป็น 'มาแล้ว/ยกเลิก'
+        const notHandled = (b.callStatus || 'ยังไม่โทรคอนเฟิม') !== 'คอนเฟิมลูกค้าที่จะมาตามนัด';
+
+        return (isTodayPending || isPastPending) && notHandled;
+      }).map(b => ({
+        ...b,
+        customerName: b.customerName || 'ไม่ระบุชื่อ',
+        phoneNumber: b.phoneNumber || 'ไม่มีเบอร์'
+      }));
+      
+      setPendingCallbacks(pending);
+      setNotificationCount(pending.length);
+    }, [bookings]);
+
     const handleAddBookingForPatient = (patient) => {
       setPendingBooking({ ...EMPTY_BOOKING(), hn: patient.hn, customerName: patient.fullName, phoneNumber: patient.phone || '' });
       setActiveTab('dashboard');
@@ -2958,6 +3229,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
         </div>
       </div>
     );
+
+    if (!isLoggedIn) {
+      return <LoginView onLogin={(data) => {
+        setAuthData(data);
+        setIsLoggedIn(true);
+      }} />;
+    }
 
     return (
       <div className="min-h-screen bg-[#FFF5F7] text-slate-800 font-sans pb-16">
@@ -3017,6 +3295,54 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
             </div>
           </div>
         )}
+
+        {/* FollowUp Modal */}
+        {showFollowUp && (
+          <FollowUpModal 
+            bookings={pendingCallbacks} 
+            records={records}
+            onClose={() => setShowFollowUp(false)} 
+            onSelectBooking={(b) => {
+              setSelectedBooking(b);
+              setShowFollowUp(false);
+            }} 
+          />
+        )}
+
+        {/* Booking Detail Modal (from FollowUp) */}
+        {selectedBooking && (
+          <BookingDetailModal 
+            booking={selectedBooking} 
+            onClose={() => setSelectedBooking(null)}
+            onUpdateStatus={async (id, data) => {
+              await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'bookings', id), data);
+            }} 
+            onUpdateCallStatus={async (id, callStatus) => {
+              await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'bookings', id), { callStatus });
+            }}
+            onEdit={(b) => {
+              // Note: Ideally this should link to DashboardTab's edit state, 
+              // but for simplicity we just handle detail view here.
+              alert("กรุณาแก้ไขข้อมูลผ่านหน้า Dashboard");
+            }} 
+            patients={patients} 
+            allBookings={bookings} 
+            records={records} 
+          />
+        )}
+
+        {/* Floating Bell Icon - Bottom Right */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <button onClick={() => setShowFollowUp(true)} 
+            className={`relative w-14 h-14 bg-gradient-to-br from-rose-400 to-rose-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center ${ notificationCount > 0 ? 'animate-pulse' : ''}` }>
+            <Bell className="w-6 h-6" />
+            {notificationCount > 0 && (
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 text-rose-600 text-[10px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+                {notificationCount > 99 ? '99+' : notificationCount}
+              </div>
+            )}
+          </button>
+        </div>
       </div>
     );
   }
